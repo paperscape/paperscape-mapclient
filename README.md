@@ -8,9 +8,9 @@ Details and progress about Paperscape can be found at the <a href="http://blog.p
 Compling
 ========
 
-The Paperscape map client is written in <a href="coffeescript.org">CoffeeScript</a>, which must first be transcompiled into JavaScript code to run in a browser. 
-Similarly, the associated style sheets are written in <a href="sass-lang.com">Sass</a>, which must be transcompiled into CSS.
-With CoffeeScript and Sass installed, the `compile` script can be used (on unix-like systems) to automatically perform the compilations.
+The Paperscape map client is written in <a href="http://coffeescript.org">CoffeeScript</a>, which must first be (trans)compiled into JavaScript code for it to run in a browser. 
+Similarly, the style sheets are written in <a href="http://sass-lang.com">Sass</a>, which must be compiled into CSS.
+With CoffeeScript and Sass installed, the <i>compile</i> script can be used (on unix-like systems) to automatically perform the compilations.
 Once started this script will continue to monitor for changes using the `inotifywait` command (from the inotify toolset) unless the runtime command `--single` is specified.
 
 The JavaScript/CoffeeScript code is split into modules, which are managed and loaded using <a href="http://requirejs.org">RequireJS</a>.
@@ -19,9 +19,9 @@ Building (deploying)
 ====================
 
 The Paperscape map client can be deployed using the included build script. 
-Copy shell script `build.def` to `build`, `chmod +x` it, and change the build path as appropriate.
+Copy shell script <i>build.def</i> to <i>build</i>, `chmod +x` it, and change the build path as appropriate.
 The JavaScript minification is handled by <a href="http://requirejs.org">RequireJS</a>, which results in a single 
-The HTML index file is minified by `minhtml/minthml.py`.
+The HTML index file is minified by <i>minhtml/minthml.py</i>.
 
 About Paperscape
 ================
