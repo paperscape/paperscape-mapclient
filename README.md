@@ -3,7 +3,7 @@ Paperscape Map Client
 
 This is the source code for the browser-based client of the <a href="http://paperscape.org">Paperscape</a> map project.
 
-Details and progress about Paperscape can be found at the <a href="http://blog.paperscape.org">development blog</a>.
+For details and progress on Paperscape refer to the <a href="http://blog.paperscape.org">development blog</a>.
 
 Compling
 ========
@@ -20,7 +20,7 @@ Building (deploying)
 
 The Paperscape map client can be deployed using the included build script. 
 Copy shell script <i>build.def</i> to <i>build</i>, `chmod +x` it, and change the build path as appropriate.
-The JavaScript minification is handled by <a href="http://requirejs.org">RequireJS</a>, which results in a single 
+The JavaScript minification is handled by <a href="http://requirejs.org">RequireJS</a>.
 The HTML index file is minified by <i>minhtml/minthml.py</i>.
 
 About Paperscape
