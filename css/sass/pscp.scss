@@ -1,0 +1,302 @@
+/* contains style features for elements with xiwiArea */
+
+$col-bg: #456;
+$col-dark-blue: #346;
+$col-gold: #fb0;
+
+/* this gets dynamically sized */
+#xiwiArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin: 0px;
+}
+
+#welcomePopup {
+    position: absolute;
+    border: 1px solid #666;
+    top: 65px;
+    left: 10px;
+    //margin-top: 10px; //0 auto;
+    padding: 4px 5px 0px 5px;
+    font-size: 13px;
+    height: 24px;
+    //font-size: 10pt;
+    color: white;
+    z-index: 100;
+    background-color: #000;
+    //line-height: 0;
+
+    .valign {
+        vertical-align: middle;
+    }
+
+    a {
+        color: $col-gold;
+        text-decoration: none;
+    }
+
+    .refresh {
+        color: $col-gold;
+        cursor: pointer;
+    }
+
+}
+
+#detailView {
+    position: absolute;
+    left: 10px;
+   
+    .header {
+        text-decoration: underline;
+    }
+
+    .value {
+        font-weight: bold;
+    }
+
+    font-size: 10px;
+    color: $col-gold;
+    z-index: 100;
+}
+
+#colourSchemeSelect, #mapSelect {
+    position: absolute;
+    left: 10px;
+    color: white;
+    //background-color: $col-dark-blue;
+    background-color: black;
+    border: 1px solid #666;
+    font-size: 13px; 
+    height: 24px;
+    //font-size: 10pt;
+    //font-family: sans-serif;
+    z-index: 100; 
+    padding: 2px 5px 2px 5px;
+
+    .select {
+        color: $col-gold;
+        //background-color:  $col-dark-blue;
+        background-color:  black;
+        font-size: 13px; 
+        //font-family: sans-serif;
+        //font-weight: bold;
+        //text-align: center;
+        border: none;
+        padding: 2px;
+        cursor: pointer;
+    }
+    
+    .select option {
+        cursor: pointer;
+        color: $col-gold;
+        //background-color: $col-dark-blue; 
+        background-color: black; 
+    }
+}
+
+
+#keyPopup {
+    position: absolute;
+    bottom: 10px;
+    background-color: black;
+    border: 1px solid #666;
+    margin-top: 60px; //0 auto;
+    margin-right: 20px;
+    padding: 5px;
+    font-size: 10pt;
+    color: white;
+    z-index: 200;
+
+    .close {
+        color: white;
+        float: right;
+        cursor: pointer;
+        margin: 0 0 0 6px;
+        font-size: 8pt;
+    }
+
+    .header {
+        display: inline-block;
+        text-decoration: underline;
+    }
+
+    .cat { 
+        display: inline-block;
+        font-size: 10pt; 
+        font-weight: bold; 
+    }
+    // TODO send this information in world_index from tiles
+    .hep-th { color: #88f; }
+    .hep-ph { color: #8f8; }
+    .hep-ex { color: #ff8; }
+    .hep-lat { color: rgb(70%,36%,20%); }
+    .gr-qc { color: #8ff; }
+    .astro-ph { color: rgb(89%,53%,60%); }
+    .cond-mat { color: rgb(70%,50%,40%); }
+    .quant-ph { color: rgb(40%,70%,70%); }
+    .physics { color: rgb(100%,50%,50%); }
+    .math { color: rgb(62%,86%,24%); }
+    .cs { color: rgb(70%,30%,60%); }
+    .other { color: rgb(70%,100%,30%); }
+}
+
+/*****************/
+
+#canvasUnderlay {
+    position: absolute;
+    z-index: 0;
+    border-top:1px solid black;
+    margin: 0px;
+}
+
+
+#canvasTiles {
+    position: absolute;
+    z-index: 1;
+    border-top:1px solid black;
+    background-color: transparent;
+    margin: 0px;
+}
+
+#canvasOverlay {
+    position: absolute;
+    z-index: 2;
+    border-top:1px solid black;
+    background-color: transparent;
+    margin: 0px;
+}
+
+#zoomedPaper {
+    border: 2px solid black;
+    position: absolute;
+    background-color: white;
+    /*background-color: #ffe;*/
+    /*background-color: #fe8;*/
+    z-index: 100;
+}
+
+
+// for the zoom in/out icons
+#canvasZoomButtons {
+    position: absolute;
+    left: 10px;
+    z-index: 100;
+
+    div {
+        display: inline-block;
+        cursor: pointer;
+        color: $col-gold;
+        width: 26px;
+        height: 20px;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: top;
+
+        &:hover {
+            font-size: 24px;
+            margin-top: -6px;
+        }
+    }
+}
+
+#infoPopup {
+    position: absolute;
+    border: 1px solid black;
+    z-index: 100;
+    background-color: white;
+    color: black;
+    font-size: 75%;
+    text-align: center;
+    overflow-y: auto;
+
+    .close {
+        color: $col-dark-blue;
+        float: right;
+        cursor: pointer;
+        margin: 4px;
+    }
+
+    .title {
+        color: black;
+        font-weight: bold;
+        margin: 0.7em;
+    }
+
+    .authors {
+        color: blue;
+        font-weight: normal;
+        margin: 0.7em;
+    }
+
+    .arxiv, .journal {
+        color: black;
+        margin: 0;
+        padding: 0 0 0 2px;
+    }
+
+    .showAbstract {
+        margin: 4px;
+        float: right;
+        font-size: 80%;
+        cursor: pointer;
+    }
+    
+    // Temporary until think up nicer style
+    .showReferences {
+        margin: 4px;
+        float: left;
+        font-size: 80%;
+        cursor: pointer;
+    }
+    .showCitations {
+        margin: 4px;
+        float: left;
+        font-size: 80%;
+        cursor: pointer;
+    }
+
+    .abstract {
+        color: black;
+        //top: 0%;
+        padding: 1em 1.5em;
+        clear: left; // doesn't try wrap around previous floats
+        //overflow-y: auto; handled by infoPopup itself
+        overflow-x: hidden;
+        text-align: justify;
+        font-size: 100%;
+        line-height: 130%;
+    }
+}
+
+.paperButton {
+    min-width: 18px;
+    margin: 0 0 0 4px;
+    cursor: pointer;
+}
+
+/****************************************************************/
+/* for latex math mode                                          */
+
+.Lmm {
+    font-family: Times;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.Lsup {
+    position: relative;
+    bottom: 0.5em;
+    font-size: 0.8em;
+}
+
+.Lsub {
+    position: relative;
+    top: 0.3em;
+    font-size: 0.8em;
+}
+
+.Lbar {
+    text-decoration: overline;
+}

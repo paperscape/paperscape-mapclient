@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+    <head>
+    <!--<title>Paperscape Maps</title>-->
+        <title>Paperscape</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta property="og:title" content="Paperscape"/>
+        <meta property="og:site_name" content="Paperscape"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="http://paperscape.org/"/>
+        <meta property="og:image" content="http://paperscape.org/img/app/paperscapeCol.png"/>
+        <meta property="og:description" content="Paperscape is an interactive map of all the scientific papers from the ArXiv database."/>
+        
+        <link rel="shortcut icon" type="image/x-icon" href="img/app/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/app/favicon.ico" />
+        <link rel="shortcut icon" type="image/png" href="img/app/favicon.png" />
+
+        <link rel="stylesheet" href="css/app/main.css"/>
+        <link rel="stylesheet" href="css/app/pscp.css"/>
+        <link rel="stylesheet" href="css/lib/icomoon.css" />
+        <link rel="stylesheet" href="css/lib/jquery-ui-autocomplete.css" />
+        <!--This should prevent default zooming on iDevice-->
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+    </head>
+
+    <body>
+
+    <!-- !if not deploy: -->
+    <script data-main="js/app/config" src="js/lib/require.js"></script>
+    <!-- !endif -->
+    
+    <!-- !if deploy
+    <script src="js/app/pscp.js"></script>
+    -->
+    
+    <div id="xiwiArea" style="display:none;">
+
+        <div id="topHeader">
+            <div id="searchHeader">
+                <table><tr>
+                <td><form id="formSearch">
+                    <input id="searchBox" type="text" />
+                    <input id="searchButton" type="submit" value="Search" />
+                    </form>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                    <div id="searchMessage">
+                        <span class="results"></span>
+                        <span class="clear">Clear search result</span>
+                    </div>
+                </td>
+                </tr>
+                </table>
+            </div>
+
+            <div id="topRightMenu">
+                <div class="info" title="Map info"><span aria-hidden="true" class="icon-info"></span></div>
+                <div class="blog" title="Development blog"><a href="http://blog.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-pencil"></span></a></div>
+                <div class="my" title="My.paperscape"><a href="http://my.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-tags"></span></a></div>
+            </div>
+        </div> <!-- end topHeader -->
+
+        <div id="welcomePopup">
+            <!--<div>A map of <span class="total"></span> scientific papers from the <a href="http://www.arxiv.org" target="_blank">arXiv</a></div>
+            <div>Last updated: <span class="update">?</span> (<span class="refresh">refresh</span>)</div>-->
+            <span class="valign">
+            A map of <span class="total"></span> scientific papers from the <a href="http://www.arxiv.org" target="_blank">arXiv</a>. 
+            Last updated: <span class="update">?</span>
+            </span>
+        </div> <!-- end welcomePopup -->
+
+        <div id="keyPopup">
+            <span class="close" title="Close"><span aria-hidden="true" class="icon-close"></span></span>
+            <div class="header">Colour code:</div>
+            <span class="category">
+                <div class="cat hep-th">hep-th</div>,
+                <div class="cat hep-ph">hep-ph</div>,
+                <div class="cat hep-ex">hep-ex</div>,
+                <div class="cat hep-lat">hep-lat</div>,
+                <div class="cat gr-qc">gr-qc</div>,
+                <div class="cat astro-ph">astro-ph</div>,
+                <div class="cat cond-mat">cond-mat</div>,
+                <div class="cat quant-ph">quant-ph</div>,
+                <div class="cat physics">physics</div>,
+                <div class="cat math">math</div>,
+                <div class="cat cs">cs</div>,
+                <div class="cat other">other</div>
+            </span>
+            <!--<span class="age">
+            </span>-->
+        </div>
+
+        <canvas id="canvasUnderlay" ></canvas>
+        <canvas id="canvasTiles" ></canvas>
+        <canvas id="canvasOverlay" >Your browser is not modern enough to support this HTML5 canvas element</canvas>
+
+        <!--<div id="colourSchemeSelect">
+            Colouring: 
+            <select class="select" title="Select map colour scheme">
+                <option value="categories">category</option>
+                <option value="paper_age">age</option>
+            </select>
+        </div>-->
+
+        <div id="mapSelect">
+            Time: 
+            <select class="select" title="Select map">
+                <option value="world">Present</option>
+                <option value="world_2013">2013</option>
+                <option value="world_2012">2012</option>
+                <option value="world_2011">2011</option>
+                <option value="world_2010">2010</option>
+                <option value="world_2009">2009</option>
+                <option value="world_2008">2008</option>
+                <option value="world_2007">2007</option>
+                <option value="world_2006">2006</option>
+                <option value="world_2005">2005</option>
+                <option value="world_2004">2004</option>
+                <option value="world_2003">2003</option>
+                <option value="world_2002">2002</option>
+                <option value="world_2001">2001</option>
+                <option value="world_2000">2000</option>
+                <option value="world_1999">1999</option>
+                <option value="world_1998">1998</option>
+                <option value="world_1997">1997</option>
+                <option value="world_1996">1996</option>
+                <option value="world_1995">1995</option>
+                <option value="world_1994">1994</option>
+            </select>
+        </div>
+
+        <div id="infoPopup">
+            <span class="close" title="Close"><span aria-hidden="true" class="icon-close"></span></span>
+            <div class="title"></div>
+            <div class="authors"></div>
+            <div>
+                <div class="journal">
+                    <span class="journalName"></span>
+                    <span class="paperButton"><a class="icoDoi" href="" target="_blank"><img title="Open paper's DOI page in a new tab" src="img/app/doi.png" /></a></span>
+                </div>
+                <div class="arxiv">
+                    arXiv:
+                    <span class="arxivId"></span>
+                    <span class="paperButton"><a class="icoPDF" href="" target="_blank"><img title="Open paper's PDF from the arXiv" src="img/app/pdf.png" /></a></span>
+                    <span class="paperButton"><a class="icoArxiv" href="" target="_blank"><img title="Open paper's arXiv page in a new tab" src="img/app/arxiv.png" /></a></span>
+                </div>
+                <div>
+                    <span class="mypscp">
+                        <i>my</i>.paperscape:
+                        <span class="paperButton"><a class="icoMypscp" href="" target="_blank"><img title="Open paper in my.paperscape" src="img/app/mypscp.png" /></a></span>
+                    </span>
+                    <span class="inspire">
+                        inSPIRE:
+                        <span class="paperButton"><a class="icoInspire" href="" target="_blank"><img title="Open paper's Inspire page in a new tab" src="img/app/inspire.png" /></a></span>
+                    </span>
+                </div>
+                <div>
+                    <span class="showReferences" title="Search for this paper's references">(references)</span>
+                </div>
+                <div>
+                    <span class="showCitations" title="Search for this paper's citations">(citations)</span>
+                </div>
+                <div>
+                    <span class="showAbstract" title="Show this paper's abstract">(abstract)</span>
+                </div>
+            </div>
+            <div class="abstract"></div>
+        </div> <!-- end infoPopup -->
+
+
+        <div id="detailView">
+            <div class="header">Info ('d' key toggles)</div>
+            <div>Size: <span class="value dims"></span></div>
+            <div>zoom factor: <span class="value zoomx"></span></div>
+            <div>zoom width: <span class="value viewx"></span></div>
+        </div> <!-- end detailView" -->
+
+        <div id="canvasZoomButtons">
+            <div id="canvasZoomIn" title="Zoom in"><span aria-hidden="true" class="icon-zoom-in"></span></div>
+            <div id="canvasZoomOut" title="Zoom out"><span aria-hidden="true" class="icon-zoom-out"></span></div>
+        </div> <!-- end infoPopup -->
+
+    </div> <!-- end xiwiArea-->
+
+    </body>
+</html>

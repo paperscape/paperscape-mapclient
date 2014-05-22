@@ -1,0 +1,10 @@
+css/sass/.sass-cache
+css/app/*.css
+local_serve/
+js/tests/*.js
+js/tests/*.map
+js/app-build/*.js
+js/app/*.js
+js/app/*.map
+build
+build-embed

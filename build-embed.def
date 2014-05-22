@@ -1,0 +1,26 @@
+#!/bin/bash
+
+SRC_DIR=.
+
+BUILD_DEST=embed-deploy
+
+mkdir -p $BUILD_DEST/img/app
+mkdir -p $BUILD_DEST/js/app
+mkdir -p $BUILD_DEST/css/lib
+mkdir -p $BUILD_DEST/css/app
+mkdir -p $BUILD_DEST/fonts
+
+$SRC_DIR/compile --single
+
+python2 $SRC_DIR/minhtml/minhtml.py $SRC_DIR/index-embed.html > $BUILD_DEST/index.html
+
+cp $SRC_DIR/img/app/* $BUILD_DEST/img/app/
+
+# optimize and copy javascript
+node $SRC_DIR/r.js -o $SRC_DIR/js/app-build-embed.js
+cp $SRC_DIR/js/app-build/pscp-embed.js $BUILD_DEST/js/app/
+gzip -kf $BUILD_DEST/js/app/*.js
+
+cp $SRC_DIR/css/lib/* $BUILD_DEST/css/lib/
+cp $SRC_DIR/css/app/* $BUILD_DEST/css/app/
+cp $SRC_DIR/fonts/* $BUILD_DEST/fonts/

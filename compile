@@ -1,0 +1,48 @@
+#!/bin/bash
+
+
+single=false
+
+while [ $# -gt 0 ] ; do
+    if [ $1 == "-s" -o $1 == "--single" ] ; then
+        single=true
+    fi
+    shift 1
+done
+
+JS_BASE=js
+CSS_BASE=css
+
+JS_APP_DIR=${JS_BASE}/app
+JS_TESTS_DIR=${JS_BASE}/tests
+
+
+function compile {
+    coffee_files=""
+    coffee_test_files=""
+    for f in ${JS_BASE}/coffee/*.coffee; do
+        if [ ${f: -12} == "_test.coffee" ]; then
+            coffee_test_files=$coffee_test_files" "$f
+        else
+            coffee_files=$coffee_files" "$f
+        fi
+    done
+
+    if [ ${#coffee_files} -gt 0 ]; then
+        coffee -o $JS_APP_DIR -c --map ${coffee_files}
+    fi
+    if [ ${#coffee_test_files} -gt 0  ]; then 
+        coffee -o $JS_TESTS_DIR -c --map ${coffee_test_files}
+    fi
+    sass --cache-location ${CSS_BASE}/sass/.sass-cache --update ${CSS_BASE}/sass:${CSS_BASE}/app 
+}
+
+compile
+
+if [ $single = false ]; then
+    echo "watching for changes and running coffee and sass"
+    while true; do
+        inotifywait -q -e modify ${JS_BASE}/coffee/*.coffee ${CSS_BASE}/sass/*.scss;
+        compile;
+    done
+fi
