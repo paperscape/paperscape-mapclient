@@ -139,13 +139,13 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                 passCallback = (data) =>
                     for kw in data.lbls
                         lbls = kw.lbl.split(',')
-                        if lbls[3].length == 0
-                            au = lbls[2]
-                        else if lbls[3] == 'et al.'
-                            au = lbls[2] + ' ' + lbls[3]
-                        else
-                            au = lbls[2] + ' and ' + lbls[3]
-                        @keywords.push({pos: new Vec2D(kw.x, kw.y), r:kw.r, lbl1:lbls[0], lbl2:lbls[1], au:au})
+                        #if lbls[3].length == 0
+                        #    au = lbls[2]
+                        #else if lbls[3] == 'et al.'
+                        #    au = lbls[2] + ' ' + lbls[3]
+                        #else
+                        #    au = lbls[2] + ' and ' + lbls[3]
+                        @keywords.push({pos: new Vec2D(kw.x, kw.y), r:kw.r, lbl1:lbls[0], lbl2:"", au:""})
                     @loaded = true
                     drawOverlay()        
                 WORLD.fetchLabelZone(@depth,@x,@y,passCallback)
