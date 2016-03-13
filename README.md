@@ -45,7 +45,7 @@ It is also possible to view the references or citations for a paper as a star-li
 Copyright
 =========
 
-Copyright (C) 2011-2014 Damien P. George and Robert Knegjens
+Copyright (C) 2011-2016 Damien P. George and Robert Knegjens
 
 Paperscape map client is free software; you can redistribute it and/or 
 modify it under the terms of the GNU General Public License as published
