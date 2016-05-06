@@ -31,8 +31,6 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         xiwiArea.width(newWidth)
         xiwiArea.height(newHeight)
 
-        # set dimensions top header
-        topHeader = 65 # this needs to match image height
 
         # set dimensions search and top right menu
         topRightMenu = $("#topRightMenu")
@@ -50,13 +48,22 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
             searchBoxWidth = SEARCH_BOX_WIDTH_MIN
         else if searchBoxWidth > SEARCH_BOX_WIDTH_MAX
             searchBoxWidth = SEARCH_BOX_WIDTH_MAX
-        
+
+        # set default dimensions for total header bar, based on logo image
+        totalHeaderHeight = 67
+        searchHeaderTop = 16
+        # adjust defaults if necessary e.g. if an oversized input form:
+        diff = $("#searchHeader").height() + 35 - totalHeaderHeight
+        if diff > 0
+            searchHeaderTop -= Math.round(diff/2)
+            totalHeaderHeight += Math.round(diff/2)
+
+        searchBox.width(searchBoxWidth)
+        searchHeader.css("top", searchHeaderTop + "px")
+        searchHeader.css("left", SEARCH_OFFSET_LEFT + 'px')
+
         topRightMenu.css("top", "13px")
         topRightMenu.css("right", "6px")
-        
-        searchBox.width(searchBoxWidth)
-        searchHeader.css("top", "16px")
-        searchHeader.css("left", SEARCH_OFFSET_LEFT + 'px')
 
         newpapersPopup = $("#newpapersPopup")
         # TODO smart width/height
@@ -74,11 +81,11 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         # colour scheme select
         schemeSelect = $("#colourSchemeSelect")
-        schemeSelect.css("top", topHeader + 10 + 'px')
+        schemeSelect.css("top", totalHeaderHeight + 10 + 'px')
 
         # colour scheme select
         mapSelect = $("#mapSelect")
-        mapSelect.css("top", topHeader + 10 + 'px')
+        mapSelect.css("top", totalHeaderHeight + 10 + 'px')
         moveRight = 0
         if schemeSelect.width()?
             moveRight += schemeSelect.width() + 20
@@ -86,8 +93,8 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         # welcome message
         welcomePopup = $("#welcomePopup")
-        #welcomePopup.css("top", topHeader + 20 + parseInt(schemeSelect.height()) + 'px')
-        welcomePopup.css("top", topHeader + 10 + 'px')
+        #welcomePopup.css("top", totalHeaderHeight + 20 + parseInt(schemeSelect.height()) + 'px')
+        welcomePopup.css("top", totalHeaderHeight + 10 + 'px')
         if mapSelect.width()?
             moveRight += mapSelect.width() + 20
         welcomePopup.css("left", 10 + moveRight + 'px')
@@ -109,9 +116,9 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         # set canvas dimensions
         mapviewWidth = Math.round(newWidth)
-        mapviewHeight = Math.round(newHeight-topHeader-1); # -1 is for the 1px border
+        mapviewHeight = Math.round(newHeight-totalHeaderHeight-1); # -1 is for the 1px border
         
-        MAPVIEW.resize(mapviewWidth,mapviewHeight,0,topHeader)
+        MAPVIEW.resize(mapviewWidth,mapviewHeight,0,totalHeaderHeight)
         MAPVIEW.draw()
 
         #PANEL.resizePanel()
@@ -120,10 +127,10 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         infoPopup = $("#infoPopup")
         infoPopupWidth = 400
         infoPopup.width(infoPopupWidth)
-        infoPopup.css("top", topHeader + 10 + "px")
+        infoPopup.css("top", totalHeaderHeight + 10 + "px")
         #infoPopup.css("left", Math.floor(0.5 * (canvasWidth - infoPopupWidth)) + "px")
         infoPopup.css("right", "10px")
-        $("#infoPopup").css("max-height", newHeight - topHeader - 20)
+        $("#infoPopup").css("max-height", newHeight - totalHeaderHeight - 20)
 
     checkDateAndVersion = ->
         request = 
