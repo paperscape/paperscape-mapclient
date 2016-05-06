@@ -279,7 +279,9 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         # keypopup
         $("#keyPopup .close").click ->
             $("#keyPopup").hide()
-        $("#topRightMenu .info").click ->
+        #$("#topRightMenu .info").click ->
+        #    $("#$("#keyPopup").toggle()
+        $("#colourSchemeSelect .legend").click ->
             $("#keyPopup").toggle()
         $("#keyPopup").hide()
 

@@ -94,6 +94,13 @@ $col-gold: #fb0;
         //background-color: $col-dark-blue; 
         background-color: black; 
     }
+
+    .legend {
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 16px; 
+    }
 }
 
 
