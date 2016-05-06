@@ -283,6 +283,36 @@ $col-gold: #fb0;
     }
 }
 
+
+#aboutPopup {
+    position: absolute;
+    border: 1px solid black;
+    z-index: 100;
+    background-color: white;
+    color: black;
+    font-size: 75%;
+    text-align: center;
+    overflow-y: auto;
+
+    .title {
+        color: black;
+        font-weight: bold;
+        margin: 0.7em;
+    }
+
+    p {
+        color: black;
+        margin: 0.7em;
+    }
+
+    .close {
+        color: $col-dark-blue;
+        float: right;
+        cursor: pointer;
+        margin: 4px;
+    }
+}
+
 .paperButton {
     min-width: 18px;
     margin: 0 0 0 4px;

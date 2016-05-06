@@ -318,6 +318,8 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
 
     exports.update = ->
         if SELECTED.isSelected()
+            # hide the about popup as they share screen realestate
+            $("#aboutPopup").hide()
             meta = getMeta(SELECTED.getSelectedId())
             meta.load()
         else 

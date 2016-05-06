@@ -132,6 +132,13 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         infoPopup.css("right", "10px")
         $("#infoPopup").css("max-height", newHeight - totalHeaderHeight - 20)
 
+        aboutPopup = $("#aboutPopup")
+        aboutPopupWidth = infoPopupWidth
+        aboutPopup.width(aboutPopupWidth)
+        aboutPopup.css("top", totalHeaderHeight + 10 + "px")
+        aboutPopup.css("right", "10px")
+        $("#aboutPopup").css("max-height", newHeight - totalHeaderHeight - 20)
+
     checkDateAndVersion = ->
         request = 
             gdmv: 1
@@ -279,8 +286,6 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         # keypopup
         $("#keyPopup .close").click ->
             $("#keyPopup").hide()
-        #$("#topRightMenu .info").click ->
-        #    $("#$("#keyPopup").toggle()
         $("#colourSchemeSelect .legend").click ->
             $("#keyPopup").toggle()
         $("#keyPopup").hide()
@@ -308,6 +313,15 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         $("#infoPopup .showCitations").click ->
             INFOVIEW.showCitations(MAPVIEW.draw)
         INFOVIEW.close()
+        
+        # about popup
+        $("#topRightMenu .info").click ->
+            INFOVIEW.close()
+            $("#aboutPopup").toggle()
+            MAPVIEW.draw()
+        $("#aboutPopup .close").click -> 
+            $("#aboutPopup").hide()
+        $("#aboutPopup").hide()
 
         # zoom buttons
         $("#canvasZoomIn").click ->

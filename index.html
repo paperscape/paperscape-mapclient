@@ -100,9 +100,9 @@
             </div>
 
             <div id="topRightMenu">
-                <div class="info" title="Map info"><span aria-hidden="true" class="icon-info"></span></div>
+                <div class="info" title="About Paperscape"><span aria-hidden="true" class="icon-info"></span></div>
                 <div class="blog" title="Development blog"><a href="http://blog.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-pencil"></span></a></div>
-                <div class="my" title="My.paperscape"><a href="http://my.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-tags"></span></a></div>
+                <div class="my" title="The My.Paperscape project"><a href="http://my.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-tags"></span></a></div>
             </div>
         </div> <!-- end topHeader -->
 
@@ -186,6 +186,33 @@
             </div>
             <div class="abstract"></div>
         </div> <!-- end infoPopup -->
+
+        <div id="aboutPopup">
+            <!--a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a-->
+            <span class="close" title="Close"><span aria-hidden="true" class="icon-close"></span></span>
+            <div class="title">About Paperscape</div>
+            <p>
+                Paperscape is an interactive map that visualises the <a href="http://arxiv.org" target="_blank">arXiv</a>, an open, online repository for scientific research papers.
+            </p>
+
+            <p>
+                Each paper is represented by a circle, with the size of a circle related to how often that paper has been cited (referred to) - a measure of its impact. 
+            </p>
+            
+            <p>
+                The papers are clustered together according to how they reference each other i.e. share information. This is done by modeling the papers as particles in a physical system, with references acting as attractive forces between papers - 
+                <a href="http://blog.paperscape.org/?page_id=2" title="Paperscape development blog" target="_blank">read more</a>.
+            </p>
+            <p style="margin-top:1.4em">
+                Created by <a href="http://dpgeorge.net" target="_blank">Damien George</a> and <a href="http://robjk.net" target="_blank">Rob Knegjens</a>.
+            </p>
+            <p style="font-size:90%;margin-top:1.1em">
+            Please report any bugs or feature requests to <a href="https://github.com/paperscape/paperscape-map-client" title="Paperscape on Github" target="_blank">Github</a>. We can also be contacted on our 
+            <a href="http://blog.paperscape.org" title="Paperscape development blog" target="_blank">development blog</a> or <a href="https://www.facebook.com/paperscape/" title="Paperscape on Facebook" target="_blank">Facebook page</a>.
+            </p>
+            </div>
+        </div> <!-- end aboutPopup -->
+
 
         <div id="detailView" style="display:none">
             <div class="header">Info ('d' key toggles)</div>
