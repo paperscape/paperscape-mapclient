@@ -71,15 +71,34 @@ h2.maintitle {
 
 #searchBox {
     width: 200px;
+    padding-right: 0px;
+    padding-left: 6px;
+    margin-right: 0px;
+    border: 1px solid $col-gold;
+    //border:none;
+    box-shadow:none;
+    height: 24px;
 }
 
 #searchButton {
-    width: 80px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    left: -6px;
+    background-color: $col-gold;
+    color: white;
+    padding: 0px;
+    padding-left: 0px;
+    margin: 0px;
+    border:1px solid $col-gold;
+    width: 30px;
+    text-shadow:none;
+    box-shadow:none;
 }
 
 #searchNewPapers {
     font-size: 80%;
-    padding-left: 4px;
+    padding-left: 6px;
     cursor: pointer;
     text-decoration: underline;
     color: $col-gold;

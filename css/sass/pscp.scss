@@ -97,8 +97,9 @@ $col-gold: #fb0;
 
     .legend {
         display: inline-block;
+        color: $col-gold;
         cursor: pointer;
-        margin-left: 5px;
+        margin-left: 3px;
         font-size: 16px; 
     }
 }

@@ -33,17 +33,13 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
 
         # set dimensions search and top right menu
-        topRightMenu = $("#topRightMenu")
-        searchHeader = $("#searchHeader")
-        searchBox = $("#searchBox")
-        searchButton = $("#searchButton")
-        topRightMenuWidth = parseInt(topRightMenu.width())
+        topRightMenuWidth = parseInt($("#topRightMenu").width())
         if topRightMenuWidth < TOP_RIGHT_MENU_WIDTH
             # when the page is first loaded, sometimes the font is not loaded before we compute this
             # so hack it to be the right size
             topRightMenuWidth = TOP_RIGHT_MENU_WIDTH
             #searchBoxWidth = Math.round(newWidth-70-parseInt(searchButton.width())-SEARCH_OFFSET_LEFT-topRightMenuWidth)
-        searchBoxWidth = Math.round(newWidth-70-parseInt(searchButton.width())-SEARCH_OFFSET_LEFT-TOP_RIGHT_MENU_WIDTH)
+        searchBoxWidth = Math.round(newWidth-70-parseInt($("#searchButton").width()) - parseInt($("#searchNewPapers").width())-SEARCH_OFFSET_LEFT-TOP_RIGHT_MENU_WIDTH)
         if searchBoxWidth < SEARCH_BOX_WIDTH_MIN
             searchBoxWidth = SEARCH_BOX_WIDTH_MIN
         else if searchBoxWidth > SEARCH_BOX_WIDTH_MAX
@@ -58,12 +54,12 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
             searchHeaderTop -= Math.round(diff/2)
             totalHeaderHeight += Math.round(diff/2)
 
-        searchBox.width(searchBoxWidth)
-        searchHeader.css("top", searchHeaderTop + "px")
-        searchHeader.css("left", SEARCH_OFFSET_LEFT + 'px')
+        $("#searchBox").width(searchBoxWidth)
+        $("#searchHeader").css("top", searchHeaderTop + "px")
+        $("#searchHeader").css("left", SEARCH_OFFSET_LEFT + 'px')
 
-        topRightMenu.css("top", "13px")
-        topRightMenu.css("right", "6px")
+        $("#topRightMenu").css("top", "13px")
+        $("#topRightMenu").css("right", "6px")
 
         newpapersPopup = $("#newpapersPopup")
         # TODO smart width/height
@@ -74,10 +70,6 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         newpapersPopup.css("top",Math.round((newHeight - newpapersPopup.height())/2) + 'px')
         newpapersPopup.css("left",Math.round((newWidth - newpapersPopup.width())/2) + 'px')
         $("#newpapersPopup .slider-range").width(500) # TODO
-
-        # centre search box (bit of a hack, above code should do it)
-        #searchOffsetLeft = 0.5 * (newWidth - searchBoxWidth)
-        #searchHeader.css("left", searchOffsetLeft + 'px')
 
         # colour scheme select
         schemeSelect = $("#colourSchemeSelect")
