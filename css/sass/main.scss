@@ -71,19 +71,25 @@ h2.maintitle {
 
 #searchBox {
     width: 200px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: top;
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding-right: 0px;
     padding-left: 6px;
     margin-right: 0px;
     border: 1px solid $col-gold;
     //border:none;
     box-shadow:none;
-    height: 24px;
     -webkit-appearance: none;
     border-radius: 0;
 }
 
 #searchButton {
     height: 28px;
+    line-height: 28px;
+    vertical-align: top;
     cursor: pointer;
     position: relative;
     left: -6px;
@@ -91,7 +97,9 @@ h2.maintitle {
     color: white;
     padding: 0px;
     padding-left: 0px;
-    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
     border:1px solid $col-gold;
     width: 30px;
     text-shadow:none;
