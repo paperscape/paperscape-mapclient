@@ -78,6 +78,8 @@ h2.maintitle {
     //border:none;
     box-shadow:none;
     height: 24px;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 #searchButton {
@@ -94,6 +96,8 @@ h2.maintitle {
     width: 30px;
     text-shadow:none;
     box-shadow:none;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 #searchNewPapers {
