@@ -86,6 +86,8 @@ $col-gold: #fb0;
         border: none;
         padding: 2px;
         cursor: pointer;
+        -moz-appearance: none;
+        -webkit-appearance: none;
     }
     
     .select option {
@@ -96,6 +98,7 @@ $col-gold: #fb0;
     }
 
     .legend {
+        width: 15px;
         display: inline-block;
         color: $col-gold;
         cursor: pointer;
