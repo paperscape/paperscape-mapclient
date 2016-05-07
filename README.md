@@ -19,7 +19,8 @@ Building (deploying)
 ====================
 
 The Paperscape map client can be deployed using the included build script. 
-Copy shell script <i>build.def</i> to <i>build</i>, `chmod +x` it, and change the build path as appropriate.
+Copy the default build script file <i>build.def</i> to a file named <i>build</i> (i.e. without the extension), and edit the build paths in the new file as appropriate. 
+Then give the new build script executable permissions with `chmod +x`, and run it with the command `./build`.
 The JavaScript minification is handled by <a href="http://requirejs.org">RequireJS</a>.
 The HTML index file is minified by <i>minhtml/minthml.py</i>.
 

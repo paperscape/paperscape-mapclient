@@ -17,7 +17,7 @@ define ['app/world','jquery'], (WORLD,$) ->
 
     # Returns the type of search, and the rest of the input
     regexArxivOld = /^\s*[A-Za-z\-]{2,8}\/\d{7}\s*$/
-    regexArxivNew = /^\s*\d{4}\.\d{4}\s*$/
+    regexArxivNew = /^\s*\d{4}\.\d{4,5}\s*$/ # 2015 update
     regexCategory = /^\s*[A-Za-z\-]{2,8}\s*$/
     regexAuthor   = /^\s*[A-Za-z][a-z]?\.-?[A-Za-z]/
 

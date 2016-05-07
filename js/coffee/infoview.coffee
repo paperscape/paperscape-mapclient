@@ -51,7 +51,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             if @inspire != ""
                 return "http://inspirehep.net/record/" + @inspire
             else if @arxivId != ""
-                if @arxivId.length == 9
+                if @arxivId.length in [9,10] and @arxivId[4] == "."
                     return "http://inspirehep.net/search?p=find+eprint+arxiv%3A" + @arxivId
                 else
                     return "http://inspirehep.net/search?p=find+eprint+" + @arxivId
