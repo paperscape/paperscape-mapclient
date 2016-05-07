@@ -70,23 +70,26 @@ h2.maintitle {
 }
 
 #searchBox {
+    -webkit-appearance: none;
+    -webkit-border-radius:0; 
+    border-radius: 0;
     width: 200px;
     height: 24px;
     line-height: 24px;
     vertical-align: top;
-    margin-top: 0px;
-    margin-bottom: 0px;
     padding-right: 0px;
     padding-left: 6px;
-    margin-right: 0px;
+    margin: 0px 0px 0px 0px;
     border: 1px solid $col-gold;
-    //border:none;
+    text-shadow:none;
     box-shadow:none;
-    -webkit-appearance: none;
-    border-radius: 0;
 }
 
 #searchButton {
+    -webkit-appearance: none;
+    -webkit-border-radius:0; 
+    border-radius: 0;
+    width: 30px;
     height: 28px;
     line-height: 28px;
     vertical-align: top;
@@ -97,15 +100,10 @@ h2.maintitle {
     color: white;
     padding: 0px;
     padding-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+    margin: 0px 0px 0px 0px;
     border:1px solid $col-gold;
-    width: 30px;
     text-shadow:none;
     box-shadow:none;
-    -webkit-appearance: none;
-    border-radius: 0;
 }
 
 #searchNewPapers {
