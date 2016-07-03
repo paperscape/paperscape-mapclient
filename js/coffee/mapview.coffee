@@ -543,6 +543,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             # outer filled circle is alpha
             ctxOverlay.fillStyle = "rgba(255, 255, 255, 0.5)" #"#fff"
             for result in searchResults
+                # out filled circle
                 viewPos = worldToView(new Vec2D(result.x,result.y))
                 viewRad = Math.round(result.r*worldToViewScale())
                 outerRad = Math.max(2*Math.round(Math.max(result.r,SEARCH_HALO_RAD/2)*worldToViewScale()),2)
@@ -553,6 +554,23 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                     ctxOverlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
                     ctxOverlay.arc(viewPos.x,viewPos.y,innerRad,0,Math.PI*2,false)
                     ctxOverlay.fill()
+
+            # inner circle is black
+            ctxOverlay.fillStyle = "#000"
+            for result in searchResults
+                if SELECTED.isSelected() and SELECTED.getSelectedId == result.id 
+                    continue
+                viewPos = worldToView(new Vec2D(result.x,result.y))
+                viewRad = Math.round(result.r*worldToViewScale())
+                haloInnerRad = Math.round((result.r+3)*worldToViewScale())
+                # clip
+                if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
+                    ctxOverlay.beginPath()
+                    ctxOverlay.arc(viewPos.x,viewPos.y,haloInnerRad,0,Math.PI*2,true)
+                    ctxOverlay.arc(viewPos.x,viewPos.y,viewRad,0,Math.PI*2,false)
+                    ctxOverlay.fill()
+
+
 
 
         # box selection
