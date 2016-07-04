@@ -4,6 +4,8 @@
 
 define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (SELECTED,WORLD,SEARCH,$) ->
 
+    MAX_AUTHORS = 12
+
     exports = {}
 
     metas = []
@@ -75,7 +77,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
         if meta?
             #console.log meta
             $("#infoPopup .title").html(makePrettyTitle(meta.title))
-            $("#infoPopup .authors").html(makePrettyAuthors(meta.authors))
+            makePrettyAuthors(meta.authors)
             publInfo = makePrettyJournal(meta.journal)
             if publInfo[0].length > 0
                 $("#infoPopup .journal").show()
@@ -118,37 +120,24 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
     islower = (c) -> 'a' <= c and c <= 'z'
 
     makePrettyAuthors = (authors) ->
-        if authors == undefined or authors == null or authors == "(unknown authors)"
-            return "(unknown authors)"
+        # initially hide all author links
+        for i in [1..13]
+            $("#infoPopup .auth" + i).css('cursor','default').hide()
 
-        authorListLastname = [authors]
-        authorListInitialsLastname = [authors]
-        htmlAuth = authors
-        shortAuth = authors
+        if authors == undefined or authors == null or authors == "(unknown authors)"
+            $("#infoPopup .auth1").html("(unknown authors)").show()
+            return 
 
         authList = authors.split(',')
         if authList.length != 0
-            # truncate author list at a maximum of 12 authors
-            # TODO option to show full author list in zoombox
+            # truncate author list at a maximum of MAX_AUTHORS authors
             extraAuth = 0
-            if authList.length > 12
-                extraAuth = authList.length - 10
-                authList = authList.slice(0, 10)
+            if authList.length > MAX_AUTHORS
+                extraAuth = authList.length - (MAX_AUTHORS - 2)
+                authList = authList.slice(0, (MAX_AUTHORS - 2))
 
-            # create:
-            #    authList: a list of initials + last name (to become authorListInitialsLastname)
-            #    authorListLastname: a list of authors last names
-            #    htmlAuth: author string for HTML display with clickable names
-
-            htmlAuth = ""
-            authorListLastname = []
             for au, i in authList
-                # add comma separator between authors
-                htmlAuth += ", " if i > 0
-                # make click link
-                # TODO this onclick circular, need to rethink it
-                #htmlAuth += "<span class=\"author\" onclick=\"INPUT.doExampleSearch('?author " + au + "')\" title=\"Search author\">"
-                htmlAuth += "<span>"
+                htmlAuth = ""
                 # and add author name to the lists
                 dot = au.lastIndexOf('.')
                 if dot >= 0
@@ -156,29 +145,18 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                     auPre = au.slice(0, dot + 1)
                     auPost = au.slice(dot + 1)
                     authList[i] = auPre + " " + auPost
-                    authorListLastname.push(auPost)
-                    htmlAuth += auPre + "&nbsp;" + auPost + "</span>"
+                    htmlAuth += auPre + "&nbsp;" + auPost
                 else
-                    authorListLastname.push(au)
-                    htmlAuth += au + "</span>"
-
-            authorListInitialsLastname = authList
+                    #authorListLastname.push(au)
+                    htmlAuth += au
+                # add comma separator between authors
+                htmlAuth += ", " if i < (authList.length - 1)
+                $("#infoPopup .auth" + (i+1)).html(htmlAuth).css('cursor','pointer').show()
 
             # if extra authors, say so
             if extraAuth > 0
-                authorListLastname.push("and " + extraAuth + " more authors")
-                authorListInitialsLastname.push("and " + extraAuth + " more authors")
-                htmlAuth += " and " + extraAuth + " more authors"
-
-            # create shortAuth: short author list, with maximum of 2 authors, no initials
-            if authorListLastname.length == 1
-                shortAuth = authorListLastname[0]
-            else if authorListLastname.length == 2
-                shortAuth = authorListLastname[0] + ", " + authorListLastname[1]
-            else
-                shortAuth = authorListLastname[0] + " et al."
-
-        return htmlAuth
+                htmlAuth = " and " + extraAuth + " more authors"
+                $("#infoPopup .auth" + (authList.length+1)).html(htmlAuth).show()
 
     makePrettyTitle = (title) ->
         if title == undefined or title == null
@@ -343,5 +321,16 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             if arXivStr?
                 SEARCH.setSearch("?cites #{arXivStr}")
                 SEARCH.doSearch(callback)
+
+    exports.searchAuthor = (index,callbackPass) ->
+        if SELECTED.isSelected()
+            meta = getMeta(SELECTED.getSelectedId())
+            authList = meta.authors.split(',')
+            if authList.length <= MAX_AUTHORS or (index <= (MAX_AUTHORS - 2))
+                authStr = authList[index-1]
+                if authStr?
+                    SEARCH.setSearch("?author #{authStr}")
+                    SEARCH.doSearch(callbackPass)
+
 
     return exports
