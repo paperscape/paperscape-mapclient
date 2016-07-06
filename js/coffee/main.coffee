@@ -304,6 +304,12 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
             INFOVIEW.showReferences(MAPVIEW.draw)
         $("#infoPopup .showCitations").click ->
             INFOVIEW.showCitations(MAPVIEW.draw)
+        for index in [1..13]
+            console.log("set index: " + index)
+            $("#infoPopup .auth" + index).click -> 
+                callbackPass = ->
+                    MAPVIEW.draw()
+                INFOVIEW.searchAuthor($(this).data("id"),callbackPass)
         INFOVIEW.close()
         
         # about popup
