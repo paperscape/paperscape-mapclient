@@ -11,7 +11,7 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
     # Multiple tile servers to get around max http requests
     # per url
     TILE_SERVERS = [
-        #"local_serve"
+        # "local_serve"
         #"http://tiles1.robjk.net:8090"
         #"http://tiles2.robjk.net:8090"
         #"http://tiles3.robjk.net:8090"
@@ -249,6 +249,7 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
         handleSuccess = (ajaxData) ->
             returnData = 
                 id :         ajaxData.papr[0]?.id ? 0
+                numRefs:     ajaxData.papr[0]?.nr ? 0
                 numCites:    ajaxData.papr[0]?.nc ? 0
                 title:       ajaxData.papr[0]?.titl ? ""
                 authors:     ajaxData.papr[0]?.auth ? ""

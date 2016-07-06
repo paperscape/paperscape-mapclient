@@ -13,6 +13,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
     class Meta
         constructor: (id) ->
             @id =         id
+            @numRefs  =   0
             @numCites =   0
             @title =      "Loading..."
             @authors =    "Loading..."
@@ -29,6 +30,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             else 
                 callback = (data) =>
                     @id =         data.id
+                    @numRefs  =   data.numRefs
                     @numCites =   data.numCites
                     @title =      data.title
                     @authors =    data.authors
@@ -110,6 +112,9 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             $("#infoPopup .showAbstract").show()
             $("#infoPopup .abstract").hide()
             $("#infoPopup").show()
+
+            $("#infoPopup .showReferences").html("references (" + meta.numRefs + ")")
+            $("#infoPopup .showCitations").html("citations (" + meta.numCites + ")")
 
     abstractPopup = (meta) ->
         if meta?.abstract?
