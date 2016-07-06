@@ -1,6 +1,7 @@
 css/sass/.sass-cache
 css/app/*.css
 css/app/*.css.map
+local_serve
 local_serve/
 js/tests/*.js
 js/tests/*.map
@@ -9,4 +10,4 @@ js/app/*.js
 js/app/*.map
 build
 build-embed
-deploy
+deploy*
