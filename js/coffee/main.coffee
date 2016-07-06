@@ -305,7 +305,6 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         $("#infoPopup .showCitations").click ->
             INFOVIEW.showCitations(MAPVIEW.draw)
         for index in [1..13]
-            console.log("set index: " + index)
             $("#infoPopup .auth" + index).click -> 
                 callbackPass = ->
                     MAPVIEW.draw()
