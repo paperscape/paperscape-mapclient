@@ -1,33 +1,33 @@
 Paperscape Map Client
 =====================
 
-This is the source code for the browser-based client of the <a href="http://paperscape.org">Paperscape</a> map project.
+This is the source code of the browser-based client of the [Paperscape map](http://paperscape.org) project.
+The source code of the [map generation](https://github.com/paperscape/paperscape-mapgen) and [web server](https://github.com/paperscape/paperscape-webserver), as well as the [Paperscape data](https://github.com/paperscape/paperscape-data), are also available on Github. 
+For more details and progress on Paperscape please visit the [development blog](http://blog.paperscape.org).
 
-For details and progress on Paperscape refer to the <a href="http://blog.paperscape.org">development blog</a>.
+Compiling
+---------
 
-Compling
-========
-
-The Paperscape map client is written in <a href="http://coffeescript.org">CoffeeScript</a>, which must first be (trans)compiled into JavaScript code for it to run in a browser. 
-Similarly, the style sheets are written in <a href="http://sass-lang.com">Sass</a>, which must be compiled into CSS.
-With CoffeeScript and Sass installed, the <i>compile</i> script can be used (on unix-like systems) to automatically perform the compilations.
+The Paperscape map client is written in [CoffeeScript](http://coffeescript.org), which must first be (trans)compiled into JavaScript code for it to run in a browser. 
+Similarly, the style sheets are written in [Sass](http://sass-lang.com), which must be compiled into CSS.
+With CoffeeScript and Sass installed, the _compile_ script can be used (on unix-like systems) to automatically perform the compilations.
 Once started this script will continue to monitor for changes using the `inotifywait` command (from the inotify toolset) unless the runtime command `--single` is specified.
 
-The JavaScript/CoffeeScript code is split into modules, which are managed and loaded using <a href="http://requirejs.org">RequireJS</a>.
+The JavaScript/CoffeeScript code is split into modules, which are managed and loaded using [RequireJS](http://requirejs.org).
 
 Building (deploying)
-====================
+--------------------
 
 The Paperscape map client can be deployed using the included build script. 
-Copy the default build script file <i>build.def</i> to a file named <i>build</i> (i.e. without the extension), and edit the build paths in the new file as appropriate. 
+Copy the default build script file _build.def_ to a file named _build_ (i.e. without the extension), and edit the build paths in the new file as appropriate. 
 Then give the new build script executable permissions with `chmod +x`, and run it with the command `./build`.
-The JavaScript minification is handled by <a href="http://requirejs.org">RequireJS</a>.
-The HTML index file is minified by <i>minhtml/minthml.py</i>.
+The JavaScript minification is handled by [RequireJS](http://requirejs.org).
+The HTML index file is minified by _minhtml/minthml.py_.
 
-About Paperscape
-================
+About the Paperscape map
+------------------------
 
-Paperscape is an interactive map that visualises the arXiv, an open, online repository for scientific research papers. 
+Paperscape is an interactive map that visualises the [arXiv](http://arxiv.org/), an open, online repository for scientific research papers. 
 The map, which can be explored by panning and zooming, currently includes all of the papers from the arXiv and is updated daily.
 
 Each scientific paper is represented in the map by a circle whose size is determined by the number of times that paper has been cited by others.
@@ -43,19 +43,14 @@ Clicking on a paper reveals its meta data, such as title, authors, journal and a
 It is also possible to view the references or citations for a paper as a star-like background on the map.
 
 Copyright
-=========
+---------
+
+The MIT License (MIT)
 
 Copyright (C) 2011-2016 Damien P. George and Robert Knegjens
 
-Paperscape map client is free software; you can redistribute it and/or 
-modify it under the terms of the GNU General Public License as published
-by the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-Paperscape map client is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
