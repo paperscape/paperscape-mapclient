@@ -263,29 +263,30 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
 
         publInfo = publInfo.split('#')
         if publInfo.length >= 2
-            journal = publInfo[0].split(',')
-            if journal[0].length > 0 and journal[1].length > 1
-                jname = journal[0][0]
-                lastUpper = false
-                for i in [1 ... journal[0].length]
-                    c = journal[0].charCodeAt(i)
-                    if 65 <= c and c <= 90
-                        # upper case
-                        jname += "."
-                        lastUpper = true
-                    else
-                        lastUpper = false
-                    jname += journal[0][i]
-                if not lastUpper or jname[jname.length - 1] == 'J'
-                    jname += ".&nbsp;"
-                else
-                    jname += " "
-                if journal.length == 3
-                    # no jpage
-                    journal = jname + journal[2] + " (" + journal[1] + ")"
-                else
-                    # has jpage
-                    journal = jname + journal[2] + " (" + journal[1] + ") " + journal[3]
+            journal = publInfo[0]
+            #journal = publInfo[0].split(',')
+            #if journal.length > 1 and journal[0].length > 0 and journal[1].length > 1
+            #    jname = journal[0][0]
+            #    lastUpper = false
+            #    for i in [1 ... journal[0].length]
+            #        c = journal[0].charCodeAt(i)
+            #        if 65 <= c and c <= 90
+            #            # upper case
+            #            jname += "."
+            #            lastUpper = true
+            #        else
+            #            lastUpper = false
+            #        jname += journal[0][i]
+            #    if not lastUpper or jname[jname.length - 1] == 'J'
+            #        jname += ".&nbsp;"
+            #    else
+            #        jname += " "
+            #    if journal.length == 3
+            #        # no jpage
+            #        journal = jname + journal[2] + " (" + journal[1] + ")"
+            #    else
+            #        # has jpage
+            #        journal = jname + journal[2] + " (" + journal[1] + ") " + journal[3]
             if publInfo[1].length > 0
                 doi = publInfo[1]
 
