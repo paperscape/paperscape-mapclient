@@ -9,8 +9,8 @@ define ['jquery'], ($) ->
     DEFAULT_TIMEOUT        = 10000
     DEFAULT_URL_EXTENSION  = "/wombat"
     #DEFAULT_SERVER         = "http://pscp.robjk.net"
-    DEFAULT_SERVER         = "http://paperscape.org"
-    #DEFAULT_SERVER         = "http://localhost:8089"
+    #DEFAULT_SERVER         = "http://paperscape.org"
+    DEFAULT_SERVER         = "http://localhost:8089"
 
     server = DEFAULT_SERVER
     timeout = DEFAULT_TIMEOUT

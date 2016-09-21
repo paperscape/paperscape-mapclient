@@ -315,17 +315,21 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
 
     exports.showReferences = (callback) ->
         if SELECTED.isSelected()
-            arXivStr = findMetaById(SELECTED.getSelectedId())?.arxivId
-            if arXivStr?
-                SEARCH.setSearch("?refs #{arXivStr}")
-                SEARCH.doSearch(callback)
+            #arXivStr = findMetaById(SELECTED.getSelectedId())?.arxivId
+            #if arXivStr?
+            #    SEARCH.setSearch("?refs #{arXivStr}")
+            #    SEARCH.doSearch(callback)
+            SEARCH.setSearch("?refs #{SELECTED.getSelectedId()}")
+            SEARCH.doSearch(callback)
 
     exports.showCitations = (callback) ->
         if SELECTED.isSelected()
-            arXivStr = findMetaById(SELECTED.getSelectedId())?.arxivId
-            if arXivStr?
-                SEARCH.setSearch("?cites #{arXivStr}")
-                SEARCH.doSearch(callback)
+            #arXivStr = findMetaById(SELECTED.getSelectedId())?.arxivId
+            #if arXivStr?
+            #    SEARCH.setSearch("?cites #{arXivStr}")
+            #    SEARCH.doSearch(callback)
+            SEARCH.setSearch("?cites #{SELECTED.getSelectedId()}")
+            SEARCH.doSearch(callback)
 
     exports.searchAuthor = (index,callbackPass) ->
         if SELECTED.isSelected()

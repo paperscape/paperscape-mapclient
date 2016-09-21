@@ -11,15 +11,15 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
     # Multiple tile servers to get around max http requests
     # per url
     TILE_SERVERS = [
-        # "local_serve"
+         "local_serve"
         #"http://tiles1.robjk.net:8090"
         #"http://tiles2.robjk.net:8090"
         #"http://tiles3.robjk.net:8090"
         #"http://tiles4.robjk.net:8090"
-        "http://tile1.paperscape.org"
-        "http://tile2.paperscape.org"
-        "http://tile3.paperscape.org"
-        "http://tile4.paperscape.org"
+        #"http://tile1.paperscape.org"
+        #"http://tile2.paperscape.org"
+        #"http://tile3.paperscape.org"
+        #"http://tile4.paperscape.org"
     ]
 
     tileServerIndex = 0
