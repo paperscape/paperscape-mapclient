@@ -14,6 +14,7 @@ define ['app/world','jquery'], (WORLD,$) ->
     SEARCH_TYPE_KEYWORD     = 6
     SEARCH_TYPE_REFS        = 7
     SEARCH_TYPE_CITES       = 8
+    SEARCH_TYPE_MPG         = 9
 
     # Returns the type of search, and the rest of the input
     regexArxivOld = /^\s*[A-Za-z\-]{2,8}\/\d{7}\s*$/
@@ -60,6 +61,8 @@ define ['app/world','jquery'], (WORLD,$) ->
                 return [SEARCH_TYPE_AUTHOR, searchTerm]
             else if command.length >= 2 and command == "title".slice(0,endIndex-1)
                 return [SEARCH_TYPE_TITLE, searchTerm]
+            else if command == "mpg".slice(0,endIndex-1)
+                return [SEARCH_TYPE_MPG, searchTerm]
             else if command == "keyword".slice(0,endIndex-1)
                 return [SEARCH_TYPE_KEYWORD, searchTerm]
             else if command == "new-papers".slice(0,endIndex-1)
@@ -71,8 +74,8 @@ define ['app/world','jquery'], (WORLD,$) ->
             else
                 return [SEARCH_TYPE_UNKNOWN, searchTerm]
         
-        if regexArxivNew.test(input) or regexArxivOld.test(input)
-            return [SEARCH_TYPE_ARXIV, input]
+        #if regexArxivNew.test(input) or regexArxivOld.test(input)
+        #    return [SEARCH_TYPE_ARXIV, input]
         else if regexAuthor.test(input)
             return [SEARCH_TYPE_AUTHOR, input]
         else
@@ -202,6 +205,12 @@ define ['app/world','jquery'], (WORLD,$) ->
                 WORLD.fetchSearchResults({sau: searchValue}, success, error) 
             when SEARCH_TYPE_TITLE
                 WORLD.fetchSearchResults({sti: searchValue}, success, error) 
+            when SEARCH_TYPE_MPG
+                request = 
+                    saux: 2
+                    min: searchValue
+                    max: 100
+                WORLD.fetchSearchResults(request, success, error) 
             when SEARCH_TYPE_NEW
                 #if (newPaperBoundaryId = WORLD.getNewPaperBoundaryId()) != 0
                 crosslists = "false"
@@ -238,9 +247,9 @@ define ['app/world','jquery'], (WORLD,$) ->
                     x:crosslists
                 WORLD.fetchSearchResults(request, success, error) 
             when SEARCH_TYPE_REFS
-                WORLD.fetchReferencesForArXivId(searchValue,successLink,error)
+                WORLD.fetchReferencesForId(searchValue,successLink,error)
             when SEARCH_TYPE_CITES
-                WORLD.fetchCitationsForArXivId(searchValue,successLink,error)
+                WORLD.fetchCitationsForId(searchValue,successLink,error)
             else
                 $("#searchMessage .results").html("Invalid search type")
                 $("#searchMessage .clear").show()

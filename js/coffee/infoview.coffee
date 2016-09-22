@@ -18,10 +18,13 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             @title =      "Loading..."
             @authors =    "Loading..."
             @journal =    ""
-            @arxivId =    ""
+            #@arxivId =    ""
             @categories = ""
-            @inspire =    ""
+            #@inspire =    ""
             @abstract =   null
+            @year = 0
+            @mpg = 0
+            @cocodes = ""
             @loaded = false
 
         load: =>
@@ -35,9 +38,12 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                     @title =      data.title
                     @authors =    data.authors
                     @journal =    data.journal
-                    @arxivId =    data.arxivId
+                    #@arxivId =    data.arxivId
                     @categories = data.categories
-                    @inspire =    data.inspire
+                    #@inspire =    data.inspire
+                    @year =       data.year
+                    @mpg =        data.mpg
+                    @cocodes =    data.cocodes
                     @loaded = true
                     infoPopup(this)
                 WORLD.fetchMetaForPaperId(@id, callback)
@@ -50,7 +56,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                     @abstract = data.abstract
                     abstractPopup(this)
                 WORLD.fetchAbstractForPaperId(@id, callback)
-
+        ###
         inspireURL: =>
             if @inspire != ""
                 return "http://inspirehep.net/record/" + @inspire
@@ -61,7 +67,8 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                     return "http://inspirehep.net/search?p=find+eprint+" + @arxivId
             else
                 return null
-
+        ###
+        
     findMetaById = (id) => 
         # TODO binary search
         for meta in metas when meta.id == id
@@ -83,13 +90,20 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
             publInfo = makePrettyJournal(meta.journal)
             if publInfo[0].length > 0
                 $("#infoPopup .journal").show()
-                $("#infoPopup .journalName").html(publInfo[0])
+                journalStr = "#{publInfo[0]} (#{meta.year}) [#{meta.cocodes.toUpperCase()}]"
+                if meta.mpg > 0
+                    journalStr += " <b>Max Planck (#{meta.mpg})</b>"
+                $("#infoPopup .journalName").html(journalStr)
                 if publInfo[1].length == 0
                     $("#infoPopup .icoDoi").hide()
                 else
                     $("#infoPopup .icoDoi").show().attr("href","http://dx.doi.org/" + publInfo[1])
             else
                 $("#infoPopup .journal").hide()
+            $("#infoPopup .arxiv").hide()
+            $("#infoPopup .inspire").hide()
+            $("#infoPopup .mypscp").hide()
+            ###
             if meta.arxivId?
                 $("#infoPopup .arxiv").show()
                 html = meta.arxivId
@@ -99,16 +113,16 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                 $("#infoPopup .icoPDF").show().attr("href", "http://arxiv.org/pdf/" + meta.arxivId)
                 $("#infoPopup .icoArxiv").show().attr("href", "http://arxiv.org/abs/" + meta.arxivId)
             else
-                $("#infoPopup .arxiv").show()
+                $("#infoPopup .arxiv").hide()
             mypscpURL = "http://my.paperscape.org/?s=#{meta.arxivId}"
             $("#infoPopup .icoMypscp").attr("href", mypscpURL)
-
             inspireURL = meta.inspireURL()
             if inspireURL?
                 $("#infoPopup .inspire").show()
                 $("#infoPopup .icoInspire").attr("href", inspireURL)
             else
                 $("#infoPopup .inspire").hide()
+            ###
             $("#infoPopup .showAbstract").show()
             $("#infoPopup .abstract").hide()
             $("#infoPopup").show()
@@ -169,11 +183,18 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
 
         # split the title into words, so we can draw it on multiple lines in the canvas
         title = title
-        titleWords = title.split(' ')
 
-        # remove $'s from title words (we don't interpret them when rendering the title on the canvas)
-        for ti, i in titleWords
-            titleWords[i] = titleWords[i].replace(/\$/g, "")
+        # WoS titles we have are all lower case
+        # Capitalise first letter of first word
+        if title.length > 1
+            title = title.charAt(0).toUpperCase() + title.slice(1)
+        else
+            title = title.toUpperCase()
+
+        #titleWords = title.split(' ')
+        ## remove $'s from title words (we don't interpret them when rendering the title on the canvas)
+        #for ti, i in titleWords
+        #    titleWords[i] = titleWords[i].replace(/\$/g, "")
 
         # parse some latex math elements in the title for nicer printing
         mathMode = false

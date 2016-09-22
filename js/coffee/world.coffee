@@ -254,9 +254,12 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
                 title:       ajaxData.papr[0]?.titl ? ""
                 authors:     ajaxData.papr[0]?.auth ? ""
                 journal:     ajaxData.papr[0]?.publ ? ""
-                arxivId:     ajaxData.papr[0]?.arxv ? ""
+                #arxivId:     ajaxData.papr[0]?.arxv ? ""
                 categories:  ajaxData.papr[0]?.cats ? ""
-                inspire:     ajaxData.papr[0]?.insp ? ""
+                #inspire:     ajaxData.papr[0]?.insp ? ""
+                year:        ajaxData.papr[0]?.aux?.int1 ? 0
+                mpg:         ajaxData.papr[0]?.aux?.int2 ? 0
+                cocodes:     ajaxData.papr[0]?.aux?.str2 ? ""
             callbackPass(returnData)
         handleError = ->
             if callbackFail?
@@ -277,9 +280,9 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
                 callbackFail()
         AJAX.doRequest(request, handleSuccess, handleError) 
 
-    exports.fetchReferencesForArXivId = (arXivId, callbackPass, callbackFail) ->
+    exports.fetchReferencesForId = (id, callbackPass, callbackFail) ->
         request =
-            mr2l: arXivId
+            mr2l: id
             tbl: dbSuffix
         handleSuccess = (ajaxData) ->
             refs = []
@@ -303,9 +306,9 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
                 callbackFail()
         AJAX.doRequest(request, handleSuccess, handleError) 
 
-    exports.fetchCitationsForArXivId = (arXivId, callbackPass, callbackFail) ->
+    exports.fetchCitationsForId = (id, callbackPass, callbackFail) ->
         request =
-            mc2l: arXivId
+            mc2l: id
             tbl: dbSuffix
         handleSuccess = (ajaxData) ->
             cites = []
