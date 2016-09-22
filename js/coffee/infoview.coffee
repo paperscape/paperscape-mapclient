@@ -99,7 +99,7 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                 $("#infoPopup .icoPDF").show().attr("href", "http://arxiv.org/pdf/" + meta.arxivId)
                 $("#infoPopup .icoArxiv").show().attr("href", "http://arxiv.org/abs/" + meta.arxivId)
             else
-                $("#infoPopup .arxiv").show()
+                $("#infoPopup .arxiv").hide()
             mypscpURL = "http://my.paperscape.org/?s=#{meta.arxivId}"
             $("#infoPopup .icoMypscp").attr("href", mypscpURL)
 
