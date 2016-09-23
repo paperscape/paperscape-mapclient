@@ -529,7 +529,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                             if specialTilesId == "heatmap"
                                 ctxUnderlay.strokeStyle = "#00f"
                             else
-                                ctxUnderlay.strokeStyle = "#ff0"
+                                ctxUnderlay.strokeStyle = "#fa0"
                             ctxUnderlay.lineWidth = Math.min(4,viewRad+2)
                             ctxUnderlay.beginPath()
                             ctxUnderlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
@@ -596,7 +596,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             if specialTilesId == "heatmap"
                 ctxOverlay.strokeStyle = "#00f"
             else
-                ctxOverlay.strokeStyle = "#ff0"
+                ctxOverlay.strokeStyle = "#fa0"
             # clip
             if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
                 ctxOverlay.lineWidth = Math.min(4,viewRad+2)
