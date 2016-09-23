@@ -252,12 +252,13 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         $("#newpapersPopup .slider-range").slider(
             range: true
-            min: 0
-            max: 32
+            min: 1
+            max: 10
             step: 1
-            values: [ 30, 32 ]
+            values: [ 2, 10 ]
             slide: (event, ui) ->
-                if ui.values[0] == ui.values[1] or ui.values[0] == ui.values[1]-1
+                #if ui.values[0] == ui.values[1] or ui.values[0] == ui.values[1]-1
+                if ui.values[0] == ui.values[1]
                     event.preventDefault()
                 else 
                     $("#newpapersPopup .slider-range").slider("values",0,ui.values[0])    

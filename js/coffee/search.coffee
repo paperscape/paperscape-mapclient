@@ -8,13 +8,12 @@ define ['app/world','jquery'], (WORLD,$) ->
     SEARCH_TYPE_UNKNOWN     = 0
     SEARCH_TYPE_AUTO        = 1
     SEARCH_TYPE_ARXIV       = 2
-    SEARCH_TYPE_NEW         = 3
+    SEARCH_TYPE_MPG         = 3
     SEARCH_TYPE_AUTHOR      = 4
     SEARCH_TYPE_TITLE       = 5
     SEARCH_TYPE_KEYWORD     = 6
     SEARCH_TYPE_REFS        = 7
     SEARCH_TYPE_CITES       = 8
-    SEARCH_TYPE_MPG         = 9
 
     # Returns the type of search, and the rest of the input
     regexArxivOld = /^\s*[A-Za-z\-]{2,8}\/\d{7}\s*$/
@@ -65,8 +64,6 @@ define ['app/world','jquery'], (WORLD,$) ->
                 return [SEARCH_TYPE_MPG, searchTerm]
             else if command == "keyword".slice(0,endIndex-1)
                 return [SEARCH_TYPE_KEYWORD, searchTerm]
-            else if command == "new-papers".slice(0,endIndex-1)
-                return [SEARCH_TYPE_NEW, searchTerm]
             else if command == "refs".slice(0,endIndex-1)
                 return [SEARCH_TYPE_REFS, searchTerm]
             else if command == "cites".slice(0,endIndex-1)
@@ -206,44 +203,36 @@ define ['app/world','jquery'], (WORLD,$) ->
             when SEARCH_TYPE_TITLE
                 WORLD.fetchSearchResults({sti: searchValue}, success, error) 
             when SEARCH_TYPE_MPG
-                request = 
-                    saux: 2
-                    min: searchValue
-                    max: 100
-                WORLD.fetchSearchResults(request, success, error) 
-            when SEARCH_TYPE_NEW
-                #if (newPaperBoundaryId = WORLD.getNewPaperBoundaryId()) != 0
                 crosslists = "false"
-                daysAgoFrom = 1 
-                daysAgoTo = 0 
-
+                min = 1
+                max = 100
+                
                 parts = searchValue.replace(/^\s*|\s*$/g,'').split(':')
                 if parts.length >= 2
-                    days = parts[0].split('-')
-                    cats = parts[1].split(',')
+                    affil = parts[0].split('-')
+                    cats  = parts[1].split(',')
                 else
                     cats = parts[0].split(',')
                 
-                if days? 
-                    if days[0]? and days[0] > 0
-                        daysAgoFrom = days[0]
-                    if days[1]? and days[1] > 0
-                        daysAgoTo = days[1]
+                if affil? 
+                    if affil[0]? and affil[0] > 0
+                        min = affil[0]
+                    if affil[1]? and affil[1] > 0
+                        max = affil[1]
 
-                newCats = []
+                mpgCats = []
                 for cat in cats
                     # remove white space
                     #cat = cat.replace(/^\s*|\s*$/g,'')
                     if cat == "crosslists"
                         crosslists = "true"
                     else 
-                        newCats.push(cat)
+                        mpgCats.push(cat)
                 request = 
-                    sca: newCats.join(",")
-                    #f:newPaperBoundaryId
-                    #t:0
-                    fd : daysAgoFrom
-                    td : daysAgoTo 
+                    scax: mpgCats.join(",")
+                    ind: 2
+                    min: min
+                    max: max
                     x:crosslists
                 WORLD.fetchSearchResults(request, success, error) 
             when SEARCH_TYPE_REFS

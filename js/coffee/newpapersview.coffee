@@ -28,12 +28,12 @@ define ['app/world','app/mapview','app/search','jquery','jquery.mousewheel'], (W
             # don't search
             return
 
-        lowerBound = 31 - $("#newpapersPopup .slider-range").slider("values",0)
-        upperBound = 32 - $("#newpapersPopup .slider-range").slider("values",1)
+        lowerBound = $("#newpapersPopup .slider-range").slider("values",0)
+        upperBound = $("#newpapersPopup .slider-range").slider("values",1)-1
 
         callbackPass = ->
             MAPVIEW.draw()
-        SEARCH.setSearch("?n #{lowerBound}-#{upperBound}:#{categoriesString}")
+        SEARCH.setSearch("?mpg #{lowerBound}-#{upperBound}:#{categoriesString}")
         SEARCH.doSearch(callbackPass)
         exports.close()
 
@@ -53,17 +53,16 @@ define ['app/world','app/mapview','app/search','jquery','jquery.mousewheel'], (W
         exports.update()
 
     exports.update = ->
-        lowerBound = 31 - $("#newpapersPopup .slider-range").slider("values",0)
-        upperBound = 32 - $("#newpapersPopup .slider-range").slider("values",1)
-        val = "New papers"
-        latestDate = WORLD.getLastDownloadDate()
-        if upperBound == 0
-            if lowerBound == 1
-                val += " for last submission day (#{latestDate})"
-            else 
-                val += " for last #{lowerBound} submission days"
+        lowerBound = $("#newpapersPopup .slider-range").slider("values",0)
+        upperBound = $("#newpapersPopup .slider-range").slider("values",1)-1
+        val = "Papers with #{lowerBound}"
+        #latestDate = WORLD.getLastDownloadDate()
+        if upperBound == 9
+            val += " or more MPG affiliations"
+        else if upperBound == lowerBound
+            val += " MPG affiliation"
         else 
-            val += " from #{upperBound} to #{lowerBound} submission days ago"
+            val += " to #{upperBound} MPG affiliations"
         $("#newpapersPopup .searchButton").val(val)
 
     return exports
