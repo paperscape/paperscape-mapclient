@@ -77,13 +77,13 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     
     # colours
     colSearch = "#fff"
-    colSearchAlpha = "rgba(255, 255, 255, 0.5)"
+    colSearchAlpha = "rgba(255, 255, 255, 0.75)"
     #colBackground = "#000"
     #colLink = "#ccc"
     #colSearch = "#000"
     #colSearchAlpha = "rgba(0, 0, 0, 0.5)"
     colBackground = "#fff"
-    colSearchBkgd = "#777"
+    colSearchBkgd = "#aaa"
     colLink = "#fff"
 
     # A Tile object represents a specific image from the server, in 1-1 correspondence
