@@ -139,19 +139,17 @@ $col-authors: #077A6C;
         font-size: 10pt; 
         font-weight: bold; 
     }
-    // TODO send this information in world_index from tiles
-    .hep-th { color: #88f; }
-    .hep-ph { color: #8f8; }
-    .hep-ex { color: #ff8; }
-    .hep-lat { color: rgb(70%,36%,20%); }
-    .gr-qc { color: #8ff; }
-    .astro-ph { color: rgb(89%,53%,60%); }
-    .cond-mat { color: rgb(70%,50%,40%); }
-    .quant-ph { color: rgb(40%,70%,70%); }
-    .physics { color: rgb(100%,50%,50%); }
-    .math { color: rgb(62%,86%,24%); }
-    .cs { color: rgb(70%,30%,60%); }
-    .other { color: rgb(70%,100%,30%); }
+    
+    // TODO update these colours
+    .dy { color: #f00; }
+    .ei { color: #0f0; }
+    .ee { color: #00f; }
+    .ea { color: rgb(100%,100%,0%); }
+    .ec { color: rgb(0%,100%,100%); }
+    .hq { color: rgb(100%,0%,100%); }
+    .uy { color: rgb(40%,60%,40%); }
+    .dw { color: rgb(20%,70%,20%); }
+    .fi { color: rgb(40%,40%,60%); }
 }
 
 /*****************/
