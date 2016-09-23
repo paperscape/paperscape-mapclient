@@ -10,7 +10,8 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     ZOOM_MIN = 0.75
     ZOOM_MAX = 1000
 
-    SEARCH_HALO_RAD = 160
+    #SEARCH_HALO_RAD = 160
+    SEARCH_HALO_RAD = 240
 
     x_min = 0
     y_min = 0
@@ -73,6 +74,17 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     zoomChangeCanvasCopy = false
 
     zoomExternalFunction = null
+    
+    # colours
+    colSearch = "#fff"
+    colSearchAlpha = "rgba(255, 255, 255, 0.5)"
+    #colBackground = "#000"
+    #colLink = "#ccc"
+    #colSearch = "#000"
+    #colSearchAlpha = "rgba(0, 0, 0, 0.5)"
+    colBackground = "#fff"
+    colSearchBkgd = "#777"
+    colLink = "#fff"
 
     # A Tile object represents a specific image from the server, in 1-1 correspondence
     # with its path.  This path remains constant throughout the Tile object's life.
@@ -435,10 +447,14 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     drawUnderlay = ->
         
         ctxUnderlay.setTransform(1, 0, 0, 1, 0, 0)
-        ctxUnderlay.fillStyle = "#000"
-        ctxUnderlay.fillRect(0, 0, canvasUnderlay.width, canvasUnderlay.height)
+        if not SEARCH.areSearchResults()
+            ctxUnderlay.fillStyle = colBackground
+            ctxUnderlay.fillRect(0, 0, canvasUnderlay.width, canvasUnderlay.height)
+        
+        else
+            ctxUnderlay.fillStyle = colSearchBkgd
+            ctxUnderlay.fillRect(0, 0, canvasUnderlay.width, canvasUnderlay.height)
 
-        if SEARCH.areSearchResults()
             searchResults = SEARCH.getSearchResults()
 
             if SEARCH.isParentLinkResult() 
@@ -448,7 +464,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
 
                 viewPos = worldToView(new Vec2D(parent.x,parent.y)).round()
                 viewRad = Math.max(Math.round(parent.r*worldToViewScale()),1)
-                ctxUnderlay.strokeStyle = "#ccc"
+                ctxUnderlay.strokeStyle = colLink 
                 if highVerbosity
                     for link in searchResults
                         viewPosB = worldToView(new Vec2D(link.x,link.y)).round()
@@ -467,7 +483,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                         ctxUnderlay.lineTo(viewPosB.x,viewPosB.y)
                         ctxUnderlay.stroke()
 
-                    ctxUnderlay.fillStyle = "#fff"
+                    ctxUnderlay.fillStyle = colSearch
                     for link in searchResults
                         viewPosB = worldToView(new Vec2D(link.x,link.y)).round()
                         viewRadB = Math.max(Math.round(link.r*worldToViewScale()),1)
@@ -478,7 +494,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                             ctxUnderlay.arc(viewPosB.x,viewPosB.y,halfLw+viewRadB*1.1,0,Math.PI*2,true)
                             ctxUnderlay.fill()
                 
-                ctxUnderlay.fillStyle = "#fff"
+                ctxUnderlay.fillStyle = colSearch
                 ctxUnderlay.lineWidth = Math.min(4,viewRad+4)
                 ctxUnderlay.beginPath()
                 ctxUnderlay.arc(viewPos.x,viewPos.y,viewRad*1.1,0,Math.PI*2,true)
@@ -489,7 +505,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                 
                 # NOW: use alpha overlay
                 # outer filled circle
-                ctxUnderlay.fillStyle = "#fff"
+                ctxUnderlay.fillStyle = colSearch
                 for result in searchResults
                     viewPos = worldToView(new Vec2D(result.x,result.y))
                     viewRad = Math.round(result.r*worldToViewScale())
@@ -513,7 +529,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                             if specialTilesId == "heatmap"
                                 ctxUnderlay.strokeStyle = "#00f"
                             else
-                                ctxUnderlay.strokeStyle = "#f00"
+                                ctxUnderlay.strokeStyle = "#ff0"
                             ctxUnderlay.lineWidth = Math.min(4,viewRad+2)
                             ctxUnderlay.beginPath()
                             ctxUnderlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
@@ -541,7 +557,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             searchResults = SEARCH.getSearchResults()
 
             # outer filled circle is alpha
-            ctxOverlay.fillStyle = "rgba(255, 255, 255, 0.5)" #"#fff"
+            ctxOverlay.fillStyle = colSearchAlpha #"#fff"
             for result in searchResults
                 # out filled circle
                 viewPos = worldToView(new Vec2D(result.x,result.y))
@@ -580,7 +596,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             if specialTilesId == "heatmap"
                 ctxOverlay.strokeStyle = "#00f"
             else
-                ctxOverlay.strokeStyle = "#f00"
+                ctxOverlay.strokeStyle = "#ff0"
             # clip
             if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
                 ctxOverlay.lineWidth = Math.min(4,viewRad+2)
