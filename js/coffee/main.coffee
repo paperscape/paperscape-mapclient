@@ -8,10 +8,11 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
     # If not, hard reload of page is performed
     VERSION = "0.3"
 
-    SEARCH_OFFSET_LEFT = 250
+    SEARCH_OFFSET_LEFT = 210
     SEARCH_BOX_WIDTH_MIN = 200
     SEARCH_BOX_WIDTH_MAX = 400
-    TOP_RIGHT_MENU_WIDTH = 120
+    #TOP_RIGHT_MENU_WIDTH = 120
+    TOP_RIGHT_MENU_WIDTH = 200
 
     # for keeping track of day change
     currentPaperId = null
@@ -31,9 +32,8 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         xiwiArea.width(newWidth)
         xiwiArea.height(newHeight)
 
-
         # set dimensions search and top right menu
-        topRightMenuWidth = parseInt($("#topRightMenu").width())
+        topRightMenuWidth = parseInt($("#topRightMenu").width()) + parseInt($("#topRightLogo").width())
         if topRightMenuWidth < TOP_RIGHT_MENU_WIDTH
             # when the page is first loaded, sometimes the font is not loaded before we compute this
             # so hack it to be the right size
@@ -58,8 +58,10 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         $("#searchHeader").css("top", searchHeaderTop + "px")
         $("#searchHeader").css("left", SEARCH_OFFSET_LEFT + 'px')
 
+        $("#topRightLogo").css("top", "13px")
+        $("#topRightLogo").css("right", "10px")
         $("#topRightMenu").css("top", "13px")
-        $("#topRightMenu").css("right", "6px")
+        $("#topRightMenu").css("right", parseInt($("#topRightLogo").width()) + 20 + "px")
 
         newpapersPopup = $("#newpapersPopup")
         # TODO smart width/height
