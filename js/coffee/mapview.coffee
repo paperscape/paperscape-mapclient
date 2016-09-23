@@ -476,83 +476,95 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
 
                         #diff = viewPosB.sub(viewPos)
                         #viewPosA = viewPos.add(diff.mul(viewRad/diff.len())).round()
-                        halfLw = Math.min(0.5*link.freq,0.5*viewRad)
+                        #halfLw = Math.min(0.5*link.freq,0.5*viewRad)
+                        halfLw = Math.min(link.freq,viewRad)
                         ctxUnderlay.lineWidth = 2*halfLw
                         ctxUnderlay.beginPath()
                         ctxUnderlay.moveTo(viewPos.x,viewPos.y)
                         ctxUnderlay.lineTo(viewPosB.x,viewPosB.y)
                         ctxUnderlay.stroke()
-
+                
+                    # Draw this with standard search circles
+                    ###
                     ctxUnderlay.fillStyle = colSearch
                     for link in searchResults
-                        viewPosB = worldToView(new Vec2D(link.x,link.y)).round()
-                        viewRadB = Math.max(Math.round(link.r*worldToViewScale()),1)
+                        viewPosB  = worldToView(new Vec2D(link.x,link.y)).round()
+                        viewRadB  = Math.max(Math.round(link.r*worldToViewScale()),1)
+                        innerRadB = Math.round((link.r+3)*worldToViewScale())
+                        outerRadB = Math.max(2*Math.round(Math.max(link.r,SEARCH_HALO_RAD/2)*worldToViewScale()),2)
                         # clip
                         if (-viewRadB < viewPosB.x < canvasOverlay.width+viewRadB) and (-viewRadB < viewPosB.y < canvasOverlay.height+viewRadB) 
-                            halfLw = Math.min(0.5*link.freq,0.5*viewRad)
                             ctxUnderlay.beginPath()
-                            ctxUnderlay.arc(viewPosB.x,viewPosB.y,halfLw+viewRadB*1.1,0,Math.PI*2,true)
+                            ctxUnderlay.arc(viewPosB.x,viewPosB.y,outerRadB,0,Math.PI*2,true)
+                            ctxUnderlay.arc(viewPosB.x,viewPosB.y,innerRadB,0,Math.PI*2,false)
                             ctxUnderlay.fill()
+
+                        # clip
+                        #if (-viewRadB < viewPosB.x < canvasOverlay.width+viewRadB) and (-viewRadB < viewPosB.y < canvasOverlay.height+viewRadB) 
+                        #    halfLw = Math.min(0.5*link.freq,0.5*viewRad)
+                        #    ctxUnderlay.beginPath()
+                        #    ctxUnderlay.arc(viewPosB.x,viewPosB.y,halfLw+viewRadB*1.1,0,Math.PI*2,true)
+                        #    ctxUnderlay.fill()
+                    ### 
                 
                 ctxUnderlay.fillStyle = colSearch
+                #ctxUnderlay.lineWidth = Math.min(4,viewRad+4)
                 ctxUnderlay.lineWidth = Math.min(4,viewRad+4)
                 ctxUnderlay.beginPath()
                 ctxUnderlay.arc(viewPos.x,viewPos.y,viewRad*1.1,0,Math.PI*2,true)
                 ctxUnderlay.fill()
 
-            else 
-                # STANDARD SEARCH CIRCLES
-                
-                # NOW: use alpha overlay
-                # outer filled circle
-                ctxUnderlay.fillStyle = colSearch
-                for result in searchResults
+            # STANDARD SEARCH CIRCLES
+            
+            # NOW: use alpha overlay
+            # outer filled circle
+            ctxUnderlay.fillStyle = colSearch
+            for result in searchResults
+                viewPos = worldToView(new Vec2D(result.x,result.y))
+                viewRad = Math.round(result.r*worldToViewScale())
+                innerRad = Math.round((result.r+3)*worldToViewScale())
+                outerRad = Math.max(2*Math.round(Math.max(result.r,SEARCH_HALO_RAD/2)*worldToViewScale()),2)
+                # clip
+                if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
+                    ctxUnderlay.beginPath()
+                    ctxUnderlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
+                    ctxUnderlay.arc(viewPos.x,viewPos.y,innerRad,0,Math.PI*2,false)
+                    ctxUnderlay.fill()
+            
+            # outer circle if selected
+            if (selectedId = SELECTED.getSelectedId())?
+                for result in searchResults when selectedId == result.id
                     viewPos = worldToView(new Vec2D(result.x,result.y))
                     viewRad = Math.round(result.r*worldToViewScale())
-                    innerRad = Math.round((result.r+3)*worldToViewScale())
-                    outerRad = Math.max(2*Math.round(Math.max(result.r,SEARCH_HALO_RAD/2)*worldToViewScale()),2)
+                    outerRad = Math.max(2*Math.round(Math.max(result.r,(SEARCH_HALO_RAD)/2)*worldToViewScale()),2)
                     # clip
-                    if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
+                    if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad)
+                        if specialTilesId == "heatmap"
+                            ctxUnderlay.strokeStyle = "#00f"
+                        else
+                            ctxUnderlay.strokeStyle = "#f0f"
+                        ctxUnderlay.lineWidth = Math.min(4,viewRad+2)
                         ctxUnderlay.beginPath()
                         ctxUnderlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
-                        ctxUnderlay.arc(viewPos.x,viewPos.y,innerRad,0,Math.PI*2,false)
-                        ctxUnderlay.fill()
-                
-                # outer circle if selected
-                if (selectedId = SELECTED.getSelectedId())?
-                    for result in searchResults when selectedId == result.id
-                        viewPos = worldToView(new Vec2D(result.x,result.y))
-                        viewRad = Math.round(result.r*worldToViewScale())
-                        outerRad = Math.max(2*Math.round(Math.max(result.r,(SEARCH_HALO_RAD)/2)*worldToViewScale()),2)
-                        # clip
-                        if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad)
-                            if specialTilesId == "heatmap"
-                                ctxUnderlay.strokeStyle = "#00f"
-                            else
-                                ctxUnderlay.strokeStyle = "#fa0"
-                            ctxUnderlay.lineWidth = Math.min(4,viewRad+2)
-                            ctxUnderlay.beginPath()
-                            ctxUnderlay.arc(viewPos.x,viewPos.y,outerRad,0,Math.PI*2,true)
-                            ctxUnderlay.stroke()
+                        ctxUnderlay.stroke()
 
-                # inner filled circle
-                #ctxUnderlay.fillStyle = "#000"
-                #for result in searchResults
-                #    viewPos = worldToView(new Vec2D(result.x,result.y))
-                #    viewRad = Math.round(result.r*worldToViewScale())
-                #    innerRad = Math.round((result.r+3)*worldToViewScale())
-                #    # clip
-                #    if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad)
-                #        ctxUnderlay.beginPath()
-                #        ctxUnderlay.arc(viewPos.x,viewPos.y,innerRad,0,Math.PI*2,true)
-                #        ctxUnderlay.fill()
+            # inner filled circle
+            #ctxUnderlay.fillStyle = "#000"
+            #for result in searchResults
+            #    viewPos = worldToView(new Vec2D(result.x,result.y))
+            #    viewRad = Math.round(result.r*worldToViewScale())
+            #    innerRad = Math.round((result.r+3)*worldToViewScale())
+            #    # clip
+            #    if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad)
+            #        ctxUnderlay.beginPath()
+            #        ctxUnderlay.arc(viewPos.x,viewPos.y,innerRad,0,Math.PI*2,true)
+            #        ctxUnderlay.fill()
        
     drawOverlay = ->
         
         ctxOverlay.setTransform(1, 0, 0, 1, 0, 0)
         ctxOverlay.clearRect(0, 0, canvasOverlay.width, canvasOverlay.height)
        
-
         if SEARCH.areSearchResults() and !SEARCH.isParentLinkResult() 
             searchResults = SEARCH.getSearchResults()
 
@@ -588,7 +600,6 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
 
 
 
-
         # box selection
         if SELECTED.isSelected() and (worldPos = SELECTED.getSelectedPos())? and (worldRad = SELECTED.getSelectedRad())?
             viewPos = worldToView(worldPos).round()
@@ -596,7 +607,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             if specialTilesId == "heatmap"
                 ctxOverlay.strokeStyle = "#00f"
             else
-                ctxOverlay.strokeStyle = "#fa0"
+                ctxOverlay.strokeStyle = "#f0f"
             # clip
             if (-viewRad < viewPos.x < canvasOverlay.width+viewRad) and (-viewRad < viewPos.y < canvasOverlay.height+viewRad) 
                 ctxOverlay.lineWidth = Math.min(4,viewRad+2)

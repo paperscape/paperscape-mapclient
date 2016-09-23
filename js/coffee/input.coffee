@@ -144,7 +144,8 @@ define ['app/Vec2D','app/selected','app/world','app/search','app/mapview','app/i
             # If user clicks within white search halo, find closest search
             # result, which will be used if available
             searchData = null
-            if SEARCH.areSearchResults() and !SEARCH.isParentLinkResult()
+            #if SEARCH.areSearchResults() and !SEARCH.isParentLinkResult()
+            if SEARCH.areSearchResults()
                 searchData = SEARCH.closestResultWithinRadius(pos,MAPVIEW.getSearchHaloRad())
 
             if searchData?
