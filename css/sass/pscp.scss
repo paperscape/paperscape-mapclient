@@ -1,8 +1,9 @@
 /* contains style features for elements with xiwiArea */
 
-$col-bg: #456;
-$col-dark-blue: #346;
-$col-gold: #fb0;
+$col-bg: #E4E4E4;
+$col-dark: #575757; // used for close crosses
+$col-gold: #077A6C;
+$col-authors: #077A6C;
 
 /* this gets dynamically sized */
 #xiwiArea {
@@ -65,7 +66,7 @@ $col-gold: #fb0;
     position: absolute;
     left: 10px;
     color: white;
-    //background-color: $col-dark-blue;
+    //background-color: $col-dark;
     background-color: black;
     border: 1px solid #666;
     font-size: 13px; 
@@ -77,7 +78,7 @@ $col-gold: #fb0;
 
     .select {
         color: $col-gold;
-        //background-color:  $col-dark-blue;
+        //background-color:  $col-dark;
         background-color:  black;
         font-size: 13px; 
         //font-family: sans-serif;
@@ -93,7 +94,7 @@ $col-gold: #fb0;
     .select option {
         cursor: pointer;
         color: $col-gold;
-        //background-color: $col-dark-blue; 
+        //background-color: $col-dark; 
         background-color: black; 
     }
 
@@ -214,7 +215,7 @@ $col-gold: #fb0;
 
 #infoPopup {
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid $col-dark;
     z-index: 100;
     background-color: white;
     color: black;
@@ -223,7 +224,7 @@ $col-gold: #fb0;
     overflow-y: auto;
 
     .close {
-        color: $col-dark-blue;
+        color: $col-dark;
         float: right;
         cursor: pointer;
         margin: 4px;
@@ -236,7 +237,7 @@ $col-gold: #fb0;
     }
 
     .authors {
-        color: blue;
+        color: $col-authors;
         font-weight: normal;
         margin: 0.7em;
     }
@@ -310,7 +311,7 @@ $col-gold: #fb0;
     }
 
     .close {
-        color: $col-dark-blue;
+        color: $col-dark;
         float: right;
         cursor: pointer;
         margin: 4px;

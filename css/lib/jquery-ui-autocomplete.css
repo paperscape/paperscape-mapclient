@@ -1,7 +1,7 @@
 /*! jQuery UI - v1.10.4 - 2014-04-19
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.autocomplete.css, jquery.ui.menu.css, jquery.ui.slider.css, jquery.ui.theme.css
-* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=%23f6a828&bgTextureHeader=flat&bgImgOpacityHeader=35&borderColorHeader=%23e78f08&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=100&borderColorContent=%23000000&fcContent=%23000000&iconColorContent=%23222222&bgColorDefault=%23ffffff&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%23000000&fcDefault=%23000000&iconColorDefault=%23000000&bgColorHover=%23ffbb00&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23000000&fcHover=%23000000&iconColorHover=%23000000&bgColorActive=%23334466&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23000000&fcActive=%23ffffff&iconColorActive=%23ffffff&bgColorHighlight=%23334466&bgTextureHighlight=flat&bgImgOpacityHighlight=100&borderColorHighlight=%23fed22f&fcHighlight=%23ffbb00&iconColorHighlight=%23ffbb00&bgColorError=%23b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=%23cd0a0a&fcError=%23ffffff&iconColorError=%23ffd27a&bgColorOverlay=%23666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=%23000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=%23077a6c&bgTextureHeader=flat&bgImgOpacityHeader=35&borderColorHeader=%23e78f08&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=100&borderColorContent=%23000000&fcContent=%23000000&iconColorContent=%23222222&bgColorDefault=%23ffffff&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%23000000&fcDefault=%23000000&iconColorDefault=%23000000&bgColorHover=%23077A6C&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23000000&fcHover=%23000000&iconColorHover=%23000000&bgColorActive=%23334466&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23000000&fcActive=%23ffffff&iconColorActive=%23ffffff&bgColorHighlight=%23334466&bgTextureHighlight=flat&bgImgOpacityHighlight=100&borderColorHighlight=%23fed22f&fcHighlight=%23077A6C&iconColorHighlight=%23077A6C&bgColorError=%23b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=%23cd0a0a&fcError=%23ffffff&iconColorError=%23ffd27a&bgColorOverlay=%23666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=%23000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
@@ -251,7 +251,7 @@
 }
 .ui-widget-header {
 	border: 1px solid #e78f08;
-    background: #f6a828 ;
+    background: #077a6c ;
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -282,9 +282,9 @@
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
 	border: 1px solid #000000;
-	background: #ffbb00;
+	background: #077A6C;
 	font-weight: bold;
-	color: #000000;
+	color: #ffffff;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -319,12 +319,12 @@
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #fed22f;
 	background: #334466; 
-	color: #ffbb00;
+	color: #077A6C;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
 .ui-widget-header .ui-state-highlight a {
-	color: #ffbb00;
+	color: #077A6C;
 }
 .ui-state-error,
 .ui-widget-content .ui-state-error,
@@ -392,7 +392,7 @@
 	/*background-image: url("images/ui-icons_ffffff_256x240.png");*/
 }
 .ui-state-highlight .ui-icon {
-	/*background-image: url("images/ui-icons_ffbb00_256x240.png");*/
+	/*background-image: url("images/ui-icons_077A6C_256x240.png");*/
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {

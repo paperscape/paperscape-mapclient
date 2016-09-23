@@ -8,7 +8,7 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
     # If not, hard reload of page is performed
     VERSION = "0.3"
 
-    SEARCH_OFFSET_LEFT = 230
+    SEARCH_OFFSET_LEFT = 250
     SEARCH_BOX_WIDTH_MIN = 200
     SEARCH_BOX_WIDTH_MAX = 400
     TOP_RIGHT_MENU_WIDTH = 120
@@ -219,11 +219,11 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         # search box autocomplete
         searchTerms = [
-            {label: "<b>?<u>s</u>mart</b> <small><small>(examples:  <i>hep-th/9908142, e.witten, seiberg string theory</i>)</small></small>", value: "?smart "}
-            {label: "<b>?<u>a</u>uthor</b> <small><small>(example: <i>?a witten; ?a z.bern</i>)</small></small>", value: "?author "}
-            {label: "<b>?<u>k</u>eyword</b> <small><small>(example: <i>?k majorana neutrino</i>)</small></small>", value: "?keyword "}
-            {label: "<b>?<u>ti</u>tle</b> <small><small>(example: <i>?ti 125 Higgs</i>)</small></small>", value: "?title "}
-            {label: "<b>?<u>n</u>ew-papers</b> <small><small>(example: <i>?n hep-ph, crosslists</i>)</small></small>", value: "?new-papers "}
+            {label: "<b>?<u>s</u>mart</b> <small><small>(examples:  <i>r.doll, nanotubes</i>)</small></small>", value: "?smart "}
+            {label: "<b>?<u>a</u>uthor</b> <small><small>(example: <i>?a davenas; ?a r.doll</i>)</small></small>", value: "?author "}
+            {label: "<b>?<u>k</u>eyword</b> <small><small>(example: <i>?k nanotubes</i>)</small></small>", value: "?keyword "}
+            {label: "<b>?<u>ti</u>tle</b> <small><small>(example: <i>?ti gold electrodes</i>)</small></small>", value: "?title "}
+            {label: "<b>?<u>m</u>pg</b> <small><small>(example: <i>?mpg 1</i>)</small></small>", value: "?mpg "}
         ]
 
         $("#searchBox").autocomplete(
@@ -242,7 +242,7 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
 
         $("#searchMessage").hide()
         
-        # New papers view
+        # New papers view -> Max Planck view
         $("#searchNewPapers").click ->
             NEWPAPERSVIEW.popup()
         NEWPAPERSVIEW.close()

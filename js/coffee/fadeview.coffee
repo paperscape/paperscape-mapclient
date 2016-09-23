@@ -23,7 +23,7 @@ define ['app/world','jquery'], (WORLD,$) ->
                 numPapers = numPapers[0...-3] + "," + numPapers[-3..]
             lastDownloadDate = WORLD.getLastDownloadDate()
             $("#welcomePopup .total").html(numPapers)
-            $("#welcomePopup .update").html(lastDownloadDate)
+            #$("#welcomePopup .update").html(lastDownloadDate)
             $("#welcomePopup").stop().fadeIn()
             welcomePopupVisible = true
 

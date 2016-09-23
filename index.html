@@ -3,14 +3,8 @@
 
     <head>
     <!--<title>Paperscape Maps</title>-->
-        <title>Paperscape</title>
+        <title>Paperscape Hyperwall Demo</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta property="og:title" content="Paperscape"/>
-        <meta property="og:site_name" content="Paperscape"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="http://paperscape.org/"/>
-        <meta property="og:image" content="http://paperscape.org/img/app/paperscapeCol.png"/>
-        <meta property="og:description" content="Paperscape is an interactive map of all the scientific papers from the ArXiv database."/>
         
         <link rel="shortcut icon" type="image/x-icon" href="img/app/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="img/app/favicon.ico" />
@@ -45,8 +39,8 @@
                     <button id="searchButton" type="submit" title="Submit search"><span aria-hidden="true" class="icon-arrow-right"/></button>
                     </form>
                 </td>
-                <td id="searchNewPapers" title="Search for new papers in a specific date range">
-                    new papers
+                <td id="searchNewPapers" title="Search for papers with a Max Planck affiliation">
+                    max planck
                 </td>
                 </tr>
                 <tr>
@@ -61,7 +55,7 @@
             </div>
 
             <div id="newpapersPopup">
-                <span class="heading">Search for new papers</span>
+                <span class="heading">Search for papers with Max Planck affiliation</span>
                 <span class="close" title="Close"><span aria-hidden="true" class="icon-close"></span></span>
                 <table class="catTable">
                     <tr>
@@ -103,7 +97,7 @@
             <div id="topRightMenu">
                 <div class="info" title="About Paperscape"><span aria-hidden="true" class="icon-info"></span></div>
                 <div class="blog" title="Development blog"><a href="http://blog.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-pencil"></span></a></div>
-                <div class="my" title="The My.Paperscape project"><a href="http://my.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-tags"></span></a></div>
+                <!--<div class="my" title="The My.Paperscape project"><a href="http://my.paperscape.org" target="_blank"><span aria-hidden="true" class="icon-tags"></span></a></div>-->
             </div>
         </div> <!-- end topHeader -->
 
@@ -111,8 +105,8 @@
             <!--<div>A map of <span class="total"></span> scientific papers from the <a href="http://www.arxiv.org" target="_blank">arXiv</a></div>
             <div>Last updated: <span class="update">?</span> (<span class="refresh">refresh</span>)</div>-->
             <span class="valign">
-            A map of <span class="total"></span> scientific papers from the <a href="http://www.arxiv.org" target="_blank">arXiv</a>. 
-            Last updated: <span class="update">?</span>
+            A map of <span class="total"></span> chemistry papers from the <a href="http://ipscience.thomsonreuters.com/product/web-of-science/" target="_blank">Web of Science</a>. 
+            <!--Last updated: <span class="update">?</span>-->
             </span>
         </div> <!-- end welcomePopup -->
 
@@ -205,7 +199,7 @@
         <div id="aboutPopup">
             <span class="close" title="Close"><span aria-hidden="true" class="icon-close"></span></span>
             <div class="title">About Paperscape</div>
-            <p>Paperscape is an interactive map that visualises the <a href="http://arxiv.org" target="_blank">arXiv</a>, an open, online repository for scientific research papers.</p>
+            <p><a href="http://paperscape.org">Paperscape</a> is an interactive map that visualises the <a href="http://arxiv.org" target="_blank">arXiv</a>, an open, online repository for scientific research papers.</p>
 
             <p>Each paper is represented by a circle, with the size of a circle related to how often that paper has been cited (referred to) - a measure of its impact.</p>
             
