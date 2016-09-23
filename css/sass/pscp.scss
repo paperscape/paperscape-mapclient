@@ -16,7 +16,7 @@ $col-authors: #077A6C;
 
 #welcomePopup {
     position: absolute;
-    border: 1px solid #666;
+    border: 1px solid $col-dark;
     top: 65px;
     left: 10px;
     //margin-top: 10px; //0 auto;
@@ -24,9 +24,10 @@ $col-authors: #077A6C;
     font-size: 13px;
     height: 24px;
     //font-size: 10pt;
-    color: white;
+    color: black;
+    //color: white;
     z-index: 100;
-    background-color: #000;
+    background-color: $col-bg;
     //line-height: 0;
 
     .valign {
@@ -65,10 +66,10 @@ $col-authors: #077A6C;
 #colourSchemeSelect, #mapSelect {
     position: absolute;
     left: 10px;
-    color: white;
     //background-color: $col-dark;
-    background-color: black;
-    border: 1px solid #666;
+    color: black;
+    background-color: $col-bg;
+    border: 1px solid $col-dark;
     font-size: 13px; 
     height: 24px;
     //font-size: 10pt;
@@ -79,7 +80,7 @@ $col-authors: #077A6C;
     .select {
         color: $col-gold;
         //background-color:  $col-dark;
-        background-color:  black;
+        background-color: $col-bg;
         font-size: 13px; 
         //font-family: sans-serif;
         //font-weight: bold;
@@ -95,7 +96,7 @@ $col-authors: #077A6C;
         cursor: pointer;
         color: $col-gold;
         //background-color: $col-dark; 
-        background-color: black; 
+        background-color: $col-bg;
     }
 
     .legend {
@@ -112,17 +113,17 @@ $col-authors: #077A6C;
 #keyPopup {
     position: absolute;
     bottom: 10px;
-    background-color: black;
-    border: 1px solid #666;
+    background-color: $col-bg;
+    border: 1px solid $col-dark;
     margin-top: 60px; //0 auto;
     margin-right: 20px;
     padding: 5px;
     font-size: 10pt;
-    color: white;
+    color: black;
     z-index: 200;
 
     .close {
-        color: white;
+        color: $col-dark;
         float: right;
         cursor: pointer;
         margin: 0 0 0 6px;
@@ -215,7 +216,7 @@ $col-authors: #077A6C;
     position: absolute;
     border: 1px solid $col-dark;
     z-index: 100;
-    background-color: white;
+    background-color: $col-bg;
     color: black;
     font-size: 75%;
     text-align: center;
@@ -289,9 +290,9 @@ $col-authors: #077A6C;
 
 #aboutPopup {
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid $col-dark;
     z-index: 100;
-    background-color: white;
+    background-color: $col-bg;
     color: black;
     font-size: 75%;
     text-align: left;

@@ -177,9 +177,9 @@ h2.maintitle {
 
 #newpapersPopup {
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid $col-dark;
     z-index: 100;
-    background-color: white;
+    background-color: $col-bg;
     color: black;
     font-size: 75%;
     text-align: center;
