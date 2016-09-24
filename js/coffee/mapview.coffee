@@ -620,9 +620,12 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             labels = getLabels()
 
             ctxOverlay.textAlign = "center"
-            ctxOverlay.fillStyle = "#fff"
-            ctxOverlay.strokeStyle = "#000"
-            ctxOverlay.lineWidth = 1.6
+            #ctxOverlay.fillStyle = "#fff"
+            #ctxOverlay.strokeStyle = "#000"
+            #ctxOverlay.lineWidth = 1.6
+            ctxOverlay.fillStyle = "#000"
+            ctxOverlay.strokeStyle = "#fff"
+            ctxOverlay.lineWidth = 2.0
             for label in labels
                 vpos = worldToView(label.pos).round()
                 pixR = label.r * worldToViewScale()
@@ -653,10 +656,10 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                         ctxOverlay.fillText(label.lbl1, vpos.x, vpos.y - textFull)
                         ctxOverlay.strokeText(label.lbl2, vpos.x, vpos.y)
                         ctxOverlay.fillText(label.lbl2, vpos.x, vpos.y)
-                        ctxOverlay.fillStyle = "#99f"
+                        ctxOverlay.fillStyle = "#660"
                         ctxOverlay.strokeText(label.au, vpos.x, vpos.y + textFull)
                         ctxOverlay.fillText(label.au, vpos.x, vpos.y + textFull)
-                        ctxOverlay.fillStyle = "#fff"
+                        ctxOverlay.fillStyle = "#000"
                     else if label.lbl2[0] == '(' and label.lbl1.length > 30 and label.lbl1.indexOf('/') > 0
                         # a hack to split gr-qc name in two
                         lbls = label.lbl1.split('/')
