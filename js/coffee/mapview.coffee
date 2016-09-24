@@ -625,7 +625,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             #ctxOverlay.lineWidth = 1.6
             ctxOverlay.fillStyle = "#000"
             ctxOverlay.strokeStyle = "#fff"
-            ctxOverlay.lineWidth = 2.0
+            ctxOverlay.lineWidth = 2.4
             for label in labels
                 vpos = worldToView(label.pos).round()
                 pixR = label.r * worldToViewScale()
