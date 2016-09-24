@@ -135,13 +135,13 @@ $col-authors: #077A6C;
         text-decoration: underline;
     }
 
-    .cat { 
+    .cat, .age { 
         display: inline-block;
         font-size: 10pt; 
         font-weight: bold; 
     }
-    
-    // TODO update these colours
+   
+    // cats
     .dy { color: #f00; }
     .ei { color: #0f0; }
     .ee { color: #00f; }
@@ -151,6 +151,10 @@ $col-authors: #077A6C;
     .uy { color: rgb(40%,60%,40%); }
     .dw { color: rgb(20%,70%,20%); }
     .fi { color: rgb(40%,40%,60%); }
+
+    // ages TODO update
+    .mpg { color: rgb(0%,40%,40%); }
+    .nompg { color: rgb(40%,40%,40%); }
 }
 
 /*****************/

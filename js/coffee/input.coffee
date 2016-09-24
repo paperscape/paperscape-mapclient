@@ -46,8 +46,12 @@ define ['app/Vec2D','app/selected','app/world','app/search','app/mapview','app/i
         value = $("#colourSchemeSelect .select").val()
         if value == "paper_age"
             MAPVIEW.setHeatmap(true)
+            $("#keyPopup .category").hide()
+            $("#keyPopup .age").show()
         else
             MAPVIEW.setHeatmap(false)
+            $("#keyPopup .age").hide()
+            $("#keyPopup .category").show()
         MAPVIEW.draw()
 
     #############################################################

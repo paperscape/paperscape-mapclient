@@ -96,6 +96,8 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
         # colour code
         keyPopup = $("#keyPopup")
         keyPopup.css("left", 90 + 'px')
+        $("#keyPopup .age").hide()
+        $("#keyPopup .category").show()
 
         # zoom buttons
         zoomButtons = $("#canvasZoomButtons")
