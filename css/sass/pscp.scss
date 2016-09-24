@@ -133,12 +133,13 @@ $col-gold: #fb0;
         text-decoration: underline;
     }
 
-    .cat { 
+    .cat, .age { 
         display: inline-block;
         font-size: 10pt; 
         font-weight: bold; 
     }
     // TODO send this information in world_index from tiles
+    // categories
     .hep-th { color: #88f; }
     .hep-ph { color: #8f8; }
     .hep-ex { color: #ff8; }
@@ -151,6 +152,10 @@ $col-gold: #fb0;
     .math { color: rgb(62%,86%,24%); }
     .cs { color: rgb(70%,30%,60%); }
     .other { color: rgb(70%,100%,30%); }
+
+    // heatmap
+    .new { color: #f00 }
+    .old { color: #777 }
 }
 
 /*****************/
