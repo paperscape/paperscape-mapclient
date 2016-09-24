@@ -255,10 +255,10 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
                 authors:     ajaxData.papr[0]?.auth ? ""
                 journal:     ajaxData.papr[0]?.publ ? ""
                 #arxivId:     ajaxData.papr[0]?.arxv ? ""
-                categories:  ajaxData.papr[0]?.cats ? ""
                 #inspire:     ajaxData.papr[0]?.insp ? ""
                 year:        ajaxData.papr[0]?.aux?.int1 ? 0
                 mpg:         ajaxData.papr[0]?.aux?.int2 ? 0
+                categories:  ajaxData.papr[0]?.aux?.str1 ? ""
                 cocodes:     ajaxData.papr[0]?.aux?.str2 ? ""
             callbackPass(returnData)
         handleError = ->

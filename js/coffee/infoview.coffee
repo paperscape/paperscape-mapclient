@@ -100,6 +100,11 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
                     $("#infoPopup .icoDoi").show().attr("href","http://dx.doi.org/" + publInfo[1])
             else
                 $("#infoPopup .journal").hide()
+            if meta.categories? and meta.categories.length > 0
+                $("#infoPopup .cats .catCodes").html(meta.categories)
+                $("#infoPopup .cats").show()
+            else
+                $("#infoPopup .cats").hide()
             $("#infoPopup .arxiv").hide()
             $("#infoPopup .inspire").hide()
             $("#infoPopup .mypscp").hide()
@@ -284,7 +289,14 @@ define ['app/selected','app/world','app/search','jquery','jquery.mousewheel'], (
 
         publInfo = publInfo.split('#')
         if publInfo.length >= 2
-            journal = publInfo[0]
+            # upper case first letter of each word
+            journal = []
+            for word in publInfo[0].split(' ')
+                str = word[0].toUpperCase()
+                if word.length > 1
+                    str += word.slice(1)
+                journal.push(str)
+            journal = journal.join(" ")
             #journal = publInfo[0].split(',')
             #if journal.length > 1 and journal[0].length > 0 and journal[1].length > 1
             #    jname = journal[0][0]
