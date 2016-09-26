@@ -6,7 +6,7 @@ define ['jquery'], ($) ->
    
     exports = {}
 
-    DEFAULT_TIMEOUT        = 10000
+    DEFAULT_TIMEOUT        = 20000
     DEFAULT_URL_EXTENSION  = "/wombat"
     #DEFAULT_SERVER         = "http://pscp.robjk.net"
     #DEFAULT_SERVER         = "http://paperscape.org"
