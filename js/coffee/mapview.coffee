@@ -102,11 +102,11 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
             @sceneId = 0
 
             # set callbacks for image loading
-            $(@img).load (event) =>
+            $(@img).on "load", (event) =>
                 @loaded = true
                 if @sceneId == currentSceneId
                     drawTileImage(@img, @pos.x, @pos.y, tile_view_w, tile_view_h)
-            $(@img).error (event) =>
+            $(@img).on "error", (event) =>
                 # invalidate the path so no one uses this tile
                 @path = 'failed'
                 @loaded = false
