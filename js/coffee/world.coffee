@@ -10,18 +10,15 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
 
     # Multiple tile servers to get around max http requests
     # per url
-    TILE_SERVERS = [
-        # "local_serve"
-        #"http://tiles1.robjk.net:8090"
-        #"http://tiles2.robjk.net:8090"
-        #"http://tiles3.robjk.net:8090"
-        #"http://tiles4.robjk.net:8090"
+    DEFAULT_TILE_SERVERS = [
         "http://tile1.paperscape.org"
         "http://tile2.paperscape.org"
         "http://tile3.paperscape.org"
         "http://tile4.paperscape.org"
     ]
 
+    tile_servers = $("#pscpConfig").data("tiles") ? DEFAULT_TILE_SERVERS
+    
     tileServerIndex = 0
 
     worldReady = false
@@ -188,9 +185,9 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
 
     exports.getTileServer = () ->
         tileServerIndex += 1
-        if tileServerIndex >= TILE_SERVERS.length
+        if tileServerIndex >= tile_servers.length
             tileServerIndex = 0
-        return "#{TILE_SERVERS[tileServerIndex]}#{subWorldPath}"
+        return "#{tile_servers[tileServerIndex]}#{subWorldPath}"
 
     exports.getTileInfoAtPosition = (depth,dx,dy,specialTiles) ->
         # dx and dy are offsets from top-left corner
