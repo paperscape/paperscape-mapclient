@@ -137,7 +137,8 @@ define ['app/Vec2D','app/selected','app/world','app/search','app/mapview','app/i
         prevMouseEvent = {pageX:event.pageX, pageY:event.pageY}
 
     exports.mouseUp = (event) ->
-        event.preventDefault()
+        if not exports.iDevice
+            event.preventDefault()
 
         exports.cancelMouseMove() # disable the mouse move callback
     
