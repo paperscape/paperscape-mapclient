@@ -1,7 +1,7 @@
 /*! jQuery UI - v1.10.4 - 2014-04-19
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.autocomplete.css, jquery.ui.menu.css, jquery.ui.slider.css, jquery.ui.theme.css
-* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=%23f6a828&bgTextureHeader=flat&bgImgOpacityHeader=35&borderColorHeader=%23e78f08&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=100&borderColorContent=%23000000&fcContent=%23000000&iconColorContent=%23222222&bgColorDefault=%23ffffff&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%23000000&fcDefault=%23000000&iconColorDefault=%23000000&bgColorHover=%23ffbb00&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23000000&fcHover=%23000000&iconColorHover=%23000000&bgColorActive=%23334466&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23000000&fcActive=%23ffffff&iconColorActive=%23ffffff&bgColorHighlight=%23334466&bgTextureHighlight=flat&bgImgOpacityHighlight=100&borderColorHighlight=%23fed22f&fcHighlight=%23ffbb00&iconColorHighlight=%23ffbb00&bgColorError=%23b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=%23cd0a0a&fcError=%23ffffff&iconColorError=%23ffd27a&bgColorOverlay=%23666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=%23000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=%23f6a828&bgTextureHeader=flat&bgImgOpacityHeader=35&borderColorHeader=%23e78f08&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=100&borderColorContent=%23000000&fcContent=%23000000&iconColorContent=%23222222&bgColorDefault=%23ffffff&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%23000000&fcDefault=%23000000&iconColorDefault=%23000000&bgColorHover=%23ffbb00&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23000000&fcHover=%23000000&iconColorHover=%23000000&bgColorActive=%23ffbb00&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23000000&fcActive=%23ffffff&iconColorActive=%23ffffff&bgColorHighlight=%23ffbb00&bgTextureHighlight=flat&bgImgOpacityHighlight=100&borderColorHighlight=%23fed22f&fcHighlight=%23ffbb00&iconColorHighlight=%23ffbb00&bgColorError=%23b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=%23cd0a0a&fcError=%23ffffff&iconColorError=%23ffd27a&bgColorOverlay=%23666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=%23000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
@@ -301,9 +301,9 @@
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #000000;
-	background: #334466;
+	background: #ffbb00;
 	font-weight: bold;
-	color: #ffffff;
+	color: #000000;
 }
 .ui-state-active a,
 .ui-state-active a:link,
@@ -318,8 +318,8 @@
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #fed22f;
-	background: #334466; 
-	color: #ffbb00;
+	background: #ffbb00; 
+	color: #000000;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
