@@ -301,7 +301,7 @@
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #000000;
-	background: #334466;
+	background: #077A6C;
 	font-weight: bold;
 	color: #ffffff;
 }
@@ -318,8 +318,8 @@
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #fed22f;
-	background: #334466; 
-	color: #077A6C;
+	background: #077A6C; 
+	color: #ffffff;
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
