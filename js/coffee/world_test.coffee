@@ -42,7 +42,8 @@ define ['app/Vec2D','app/ajax','app/world'], (Vec2D, AJAX, WORLD) ->
 
                 # Test tile urls
                 #dims = WORLD.getDimensions()
-                depth = WORLD.getClosestTiling(256).depth
+                maxTileWidth = 1e8
+                depth = WORLD.getClosestTiling(maxTileWidth).depth
                 # Currently x direction sets the y-tiling
                 farEdge = dims.x_max - 50 -dims.x_min
                 # Add 10 as rounding errors adding up!
@@ -50,7 +51,7 @@ define ['app/Vec2D','app/ajax','app/world'], (Vec2D, AJAX, WORLD) ->
                 tileInfo = WORLD.getTileInfoAtPosition(depth,farEdge,middle)
                 equal tileInfo.path, "tiles/0/4/3.png"
 
-                equal WORLD.getClosestLabelZone(5).depth, 0 
+                equal WORLD.getClosestLabelZone(5).depth, 8 
 
                 start()
             errorCallback = ->

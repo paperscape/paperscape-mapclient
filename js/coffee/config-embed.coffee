@@ -1,7 +1,7 @@
 requirejs.config
     baseUrl: 'js'
     paths:
-        'jquery': "lib/jquery-1.8.3.min"
+        'jquery': "lib/jquery-3.1.1"
         'jquery.mousewheel': "lib/jquery.mousewheel"
         'jquery.autocomplete': "lib/jquery-ui-autocomplete.min"
         'jquery.autocomplete.html': "lib/jquery-ui-autocomplete.html"

@@ -2,8 +2,8 @@ define ['app/ajax'], (AJAX) ->
     run : ->
         module "AJAX"
 
-        testServer = "http://pscp.robjk.net"
-        failServer = "http://pscp.robjk.net:6666"
+        testServer = "http://paperscape.org"
+        failServer = "http://paperscape.org:6666"
 
         test "GET callback: success", ->
             stop()
@@ -49,7 +49,8 @@ define ['app/ajax'], (AJAX) ->
             config = 
                 timeout: 1
             testCallback = (status) ->
-                equal status, "timeout",
-                    "Status set to timeout"
+                #equal status, "timeout",
+                equal status, "error",
+                    "Status set to error"
                 start()
             AJAX.doRequest(inputData, null, testCallback, config)

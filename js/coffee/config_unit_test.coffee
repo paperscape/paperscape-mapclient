@@ -1,7 +1,7 @@
 requirejs.config
     baseUrl: 'js'
     paths:
-        'jquery': "lib/jquery-1.8.3.min"
+        'jquery': "lib/jquery-3.1.1.min"
         'jquery.mousewheel': "lib/jquery.mousewheel"
         'QUnit': 'lib/qunit-1.11.0'
     shim: 
