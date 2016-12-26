@@ -11,7 +11,7 @@ define ['jquery'], ($) ->
     DEFAULT_SERVER         = "http://paperscape.org"
 
     server  = $("#pscpConfig").data("server")  ? DEFAULT_SERVER
-    timeout = $("#pscpConfig").data("timeout") ? DEFAULT_TIMEOUT
+    timeout = $("#pscpConfig").data("ajaxTimeout") ? DEFAULT_TIMEOUT
 
     ajaxSuccess = (data, status, xhr, callback) ->
         if callback? 

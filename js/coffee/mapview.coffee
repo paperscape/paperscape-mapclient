@@ -10,6 +10,12 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     ZOOM_MIN = 0.75
     ZOOM_MAX = 1000
 
+    # timeout for loading tile images
+    #TILE_LOAD_TIMEOUT  = $("#pscpConfig").data("tileTimeout") ? 10000
+   
+    # if not all tiles were loaded and still same scene, try again after this delay
+    DRAW_TILES_TIMEOUT = 2000
+
     SEARCH_HALO_RAD = 160
 
     x_min = 0
@@ -39,7 +45,7 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     # For tiles
     ctxTiles    = null
     canvasTiles = null
-   
+
     # For overlay on tiles
     ctxOverlay = null
     canvasOverlay = null
@@ -78,29 +84,44 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
     # with its path.  This path remains constant throughout the Tile object's life.
     # A Tile can draw itself on the canvas at the right location.
     #
-    # It is in one of 2 states:
-    #   - Unloaded: image is loading; when loaded it will draw to the canvas at pos, if scene id is unchanged
-    #   - Loaded: image is loaded; it will draw itself straight away if asked to
+    # Image is either @img.complete or not
+    #   - incomplete: image is loading; when loaded it will draw to the canvas at pos, if scene id is unchanged
+    #   - complete: image is loaded; it will draw itself straight away if asked to
     class Tile
         constructor: (path) ->
             @path = path
             @img  = new Image()
-            @loaded = false
+            #@loaded = false # use @img.complete instead
             @pos = new Vec2D(0, 0)
             @sceneId = 0
 
             # set callbacks for image loading
             $(@img).on "load", (event) =>
-                @loaded = true
+                #@loaded = true
                 if @sceneId == currentSceneId
                     drawTileImage(@img, @pos.x, @pos.y, tile_view_w, tile_view_h)
             $(@img).on "error", (event) =>
                 # invalidate the path so no one uses this tile
                 @path = 'failed'
-                @loaded = false
+                #@loaded = false
 
             # load the image straight away
             @img.src = "#{WORLD.getTileServer()}/#{@path}"
+            if @img.complete 
+                $(@img).off "load"
+                $(@img).off "error"
+                #@loaded = true
+            #else
+                # set a time out for imaging loading
+                # NOTE: image will however continue loading...
+                #setTimeout ( =>
+                #    if not @img.complete
+                #        $(@img).off "load"
+                #        $(@img).off "error"
+                #        @path = 'failed'
+                #        # invalidate the path so no one uses this tile
+                #        #@loaded = false
+                #), TILE_LOAD_TIMEOUT
 
         draw: (sceneId, pos) =>
             # move to start of tiles list
@@ -109,7 +130,8 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                     allTiles.splice(i,1)
                     allTiles.unshift(this)
                     break
-            if @loaded 
+            #if @loaded 
+            if @img.complete and @path != 'failed'
                 # loaded; draw straight away
                 drawTileImage(@img, pos.x, pos.y, tile_view_w, tile_view_h)
             else
@@ -422,7 +444,8 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
                 worldPos = viewToWorld(viewPos)
                 tileData = WORLD.getTileInfoAtPosition(tile_depth,worldPos.x+tile_world_w/2 - x_min,worldPos.y+tile_world_h/2 - y_min,specialTilesId)
                 if (tile = getTile(tileData?.path))?
-                    if !tile.loaded
+                    #if !tile.loaded
+                    if !tile.img.complete
                         allTilesLoaded = false
                     tile.draw(sceneId, viewPos)
                 else 
@@ -431,6 +454,13 @@ define ['app/Vec2D','app/world','app/search','app/selected','jquery'], (Vec2D,WO
 
         if zoomChangeCanvasCopy
             zoomChangeCanvasCopy = !allTilesLoaded
+
+        if not allTilesLoaded
+            # Call fail safe redraw of tiles in case of loading timeouts
+            setTimeout ( =>
+                if sceneId == currentSceneId
+                    drawTiles()
+            ), DRAW_TILES_TIMEOUT
 
     drawUnderlay = ->
         
