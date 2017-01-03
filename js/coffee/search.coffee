@@ -224,7 +224,7 @@ define ['app/world','jquery'], (WORLD,$) ->
                 newCats = []
                 for cat in cats
                     # remove white space
-                    #cat = cat.replace(/^\s*|\s*$/g,'')
+                    cat = cat.replace(/\s/g,'')
                     if cat == "crosslists"
                         crosslists = "true"
                     else 
