@@ -10,10 +10,11 @@ define ['app/world','jquery'], (WORLD,$) ->
     SEARCH_TYPE_ARXIV       = 2
     SEARCH_TYPE_MPG         = 3
     SEARCH_TYPE_AUTHOR      = 4
-    SEARCH_TYPE_TITLE       = 5
-    SEARCH_TYPE_KEYWORD     = 6
-    SEARCH_TYPE_REFS        = 7
-    SEARCH_TYPE_CITES       = 8
+    SEARCH_TYPE_GROUPMPG    = 5
+    SEARCH_TYPE_TITLE       = 6
+    SEARCH_TYPE_KEYWORD     = 7
+    SEARCH_TYPE_REFS        = 8
+    SEARCH_TYPE_CITES       = 9
 
     # Returns the type of search, and the rest of the input
     regexArxivOld = /^\s*[A-Za-z\-]{2,8}\/\d{7}\s*$/
@@ -62,6 +63,8 @@ define ['app/world','jquery'], (WORLD,$) ->
                 return [SEARCH_TYPE_TITLE, searchTerm]
             else if command == "mpg".slice(0,endIndex-1)
                 return [SEARCH_TYPE_MPG, searchTerm]
+            else if command == "groupmpg".slice(0,endIndex-1)
+                return [SEARCH_TYPE_GROUPMPG, searchTerm]
             else if command == "keyword".slice(0,endIndex-1)
                 return [SEARCH_TYPE_KEYWORD, searchTerm]
             else if command == "refs".slice(0,endIndex-1)
@@ -234,6 +237,28 @@ define ['app/world','jquery'], (WORLD,$) ->
                     min: min
                     max: max
                     x:crosslists
+                WORLD.fetchSearchResults(request, success, error) 
+            when SEARCH_TYPE_GROUPMPG
+                min = 1
+                max = 100
+                
+                parts = searchValue.replace(/^\s*|\s*$/g,'').split(':')
+                if parts.length >= 2
+                    affil = parts[0].split('-')
+                    author = parts[1]
+                else
+                    author = parts[0]
+                
+                if affil? 
+                    if affil[0]? and affil[0] > 0
+                        min = affil[0]
+                    if affil[1]? and affil[1] > 0
+                        max = affil[1]
+                request = 
+                    saux: author
+                    ind: 2
+                    min: min
+                    max: max
                 WORLD.fetchSearchResults(request, success, error) 
             when SEARCH_TYPE_REFS
                 WORLD.fetchReferencesForId(searchValue,successLink,error)

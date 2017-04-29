@@ -227,7 +227,8 @@ define ['app/ajax','app/search','app/mapview','app/infoview','app/fadeview','app
             {label: "<b>?<u>a</u>uthor</b> <small><small>(example: <i>?a davenas; ?a r.doll</i>)</small></small>", value: "?author "}
             {label: "<b>?<u>k</u>eyword</b> <small><small>(example: <i>?k nanotubes</i>)</small></small>", value: "?keyword "}
             {label: "<b>?<u>ti</u>tle</b> <small><small>(example: <i>?ti gold electrodes</i>)</small></small>", value: "?title "}
-            {label: "<b>?<u>m</u>pg</b> <small><small>(example: <i>?mpg 1</i>)</small></small>", value: "?mpg "}
+            {label: "<b>?<u>g</u>roupmpg</b> <small><small>(example: <i>?g e.donath</i>)</small></small>", value: "?mpg "}
+            #{label: "<b>?<u>m</u>pg</b> <small><small>(example: <i>?mpg 1-9:ei</i>)</small></small>", value: "?mpg "}
         ]
 
         $("#searchBox").autocomplete(
