@@ -2,7 +2,7 @@ Paperscape Map Client
 =====================
 
 This is the source code of the browser-based client of the [Paperscape map](http://paperscape.org) project.
-The source code of the [map generation](https://github.com/paperscape/paperscape-mapgen) and [web server](https://github.com/paperscape/paperscape-webserver), as well as the [Paperscape data](https://github.com/paperscape/paperscape-data), are also available on Github. 
+The source code of the [map generation](https://github.com/paperscape/paperscape-mapgen) and [backend web server](https://github.com/paperscape/paperscape-backend), as well as the [Paperscape data](https://github.com/paperscape/paperscape-data), are also available on Github.
 For more details and progress on Paperscape please visit the [development blog](http://blog.paperscape.org).
 
 Compiling
