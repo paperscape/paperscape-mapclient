@@ -1,9 +1,9 @@
 Paperscape Map Client
 =====================
 
-This is the source code of the browser-based client of the [Paperscape map](http://paperscape.org) project.
+This is the source code of the browser-based client of the [Paperscape map](https://paperscape.org) project.
 The source code of the [map generation](https://github.com/paperscape/paperscape-mapgen) and [backend web server](https://github.com/paperscape/paperscape-backend), as well as the [Paperscape data](https://github.com/paperscape/paperscape-data), are also available on Github.
-For more details and progress on Paperscape please visit the [development blog](http://blog.paperscape.org).
+For more details and progress on Paperscape please visit the [development blog](https://blog.paperscape.org).
 
 Compiling
 ---------
@@ -27,7 +27,7 @@ The HTML index file is minified by _minhtml/minthml.py_.
 About the Paperscape map
 ------------------------
 
-Paperscape is an interactive map that visualises the [arXiv](http://arxiv.org/), an open, online repository for scientific research papers. 
+Paperscape is an interactive map that visualises the [arXiv](https://arxiv.org/), an open, online repository for scientific research papers. 
 The map, which can be explored by panning and zooming, currently includes all of the papers from the arXiv and is updated daily.
 
 Each scientific paper is represented in the map by a circle whose size is determined by the number of times that paper has been cited by others.

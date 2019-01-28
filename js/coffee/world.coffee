@@ -11,10 +11,10 @@ define ['app/Vec2D','app/ajax'], (Vec2D, AJAX) ->
     # Multiple tile servers to get around max http requests
     # per url
     DEFAULT_TILE_SERVERS = [
-        "http://tile1.paperscape.org"
-        "http://tile2.paperscape.org"
-        "http://tile3.paperscape.org"
-        "http://tile4.paperscape.org"
+        "https://tile1.paperscape.org"
+        "https://tile2.paperscape.org"
+        "https://tile3.paperscape.org"
+        "https://tile4.paperscape.org"
     ]
 
     tile_servers = $("#pscpConfig").data("tiles") ? DEFAULT_TILE_SERVERS

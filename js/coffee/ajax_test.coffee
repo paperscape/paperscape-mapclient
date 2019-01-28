@@ -2,8 +2,8 @@ define ['app/ajax'], (AJAX) ->
     run : ->
         module "AJAX"
 
-        testServer = "http://paperscape.org"
-        failServer = "http://paperscape.org:6666"
+        testServer = "https://paperscape.org"
+        failServer = "https://paperscape.org:6666"
 
         test "GET callback: success", ->
             stop()
