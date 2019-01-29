@@ -21,5 +21,6 @@
     wrapShim: true,
     name: "app/config",
     include: "requireLib",
+    optimize: "none",
     out: "app-build/pscp.js"
 })
