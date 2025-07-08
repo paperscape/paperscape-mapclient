@@ -1,0 +1,16 @@
+FROM node:16-buster
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y python2 inotify-tools && apt-get clean
+
+RUN npm init -y
+RUN npm install
+RUN npm install -g sass@1.62.0 requirejs@2.3.6 coffeescript@2.7.0
+
+COPY . .
+
+RUN chmod +x build.def compile
+
+# Build into /app/deploy
+ENTRYPOINT ./build.def

@@ -34,7 +34,7 @@ function compile {
     if [ ${#coffee_test_files} -gt 0  ]; then 
         coffee -o $JS_TESTS_DIR -c --map ${coffee_test_files}
     fi
-    sass --cache-location ${CSS_BASE}/sass/.sass-cache --update ${CSS_BASE}/sass:${CSS_BASE}/app 
+    sass --update ${CSS_BASE}/sass:${CSS_BASE}/app 
 }
 
 compile
